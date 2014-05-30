@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MyPress.Web" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MyPress.Web" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Data">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bing" nillable="true" type="tns:ArrayOfBing" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Pass" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Data" nillable="true" type="tns:Data" />
+  <xs:complexType name="ArrayOfBing">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Bing" nillable="true" type="tns:Bing" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBing" nillable="true" type="tns:ArrayOfBing" />
+  <xs:complexType name="Bing">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SentAnalys" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Bing" nillable="true" type="tns:Bing" />
+</xs:schema>
