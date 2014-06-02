@@ -40,26 +40,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Hammock">
-      <HintPath>..\packages\Hammock.1.3.1\lib\4.0\Hammock.dll</HintPath>
-    </Reference>
     <Reference Include="Hammock.ClientProfile">
-      <HintPath>..\packages\Hammock.1.3.1\lib\4.0\Hammock.ClientProfile.dll</HintPath>
-    </Reference>
-    <Reference Include="Hammock.Silverlight">
-      <HintPath>..\..\..\..\Desktop\packages\TweetSharp.2.3.1\lib\sl4\Hammock.Silverlight.dll</HintPath>
-    </Reference>
-    <Reference Include="Hammock.WindowsPhone.Mango">
-      <HintPath>..\..\..\..\Desktop\packages\TweetSharp.2.3.1\lib\sl4-wp71\Hammock.WindowsPhone.Mango.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib.Silverlight">
-      <HintPath>..\..\..\..\Desktop\packages\TweetSharp.2.3.1\lib\sl4\ICSharpCode.SharpZipLib.Silverlight.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib.WindowsPhone">
-      <HintPath>..\..\..\..\Desktop\packages\TweetSharp.2.3.1\lib\sl4-wp71\ICSharpCode.SharpZipLib.WindowsPhone.dll</HintPath>
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>..\..\..\..\Desktop\IKVM.OpenJDK.Core.dll</HintPath>
+      <HintPath>D:\ikvmbin-7.2.4630.5\ikvm-7.2.4630.5\bin\IKVM.OpenJDK.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -75,10 +60,10 @@
       <HintPath>..\packages\MongoRepository.1.6.5\lib\net45\MongoRepository.Net45.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Desktop\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\4.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SentiStrengthCom">
-      <HintPath>..\..\..\..\Desktop\SentiStrengthCom.dll</HintPath>
+      <HintPath>D:\sentistrength-deploy-test-master\sentistrength-deploy-test-master\bin\SentiStrengthCom.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Runtime.Serialization" />
@@ -103,13 +88,13 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="TweetSharp">
-      <HintPath>..\..\..\..\Desktop\packages\TweetSharp.2.3.1\lib\4.0\TweetSharp.dll</HintPath>
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\4.0\TweetSharp.dll</HintPath>
     </Reference>
     <Reference Include="VkNet">
-      <HintPath>..\..\..\..\Desktop\packages\VkNet.1.0.7\lib\net45\VkNet.dll</HintPath>
+      <HintPath>..\packages\VkNet.1.0.7\lib\net45\VkNet.dll</HintPath>
     </Reference>
     <Reference Include="Z.ExtensionMethods">
-      <HintPath>..\..\..\..\Desktop\packages\Z.ExtensionMethods.1.1.4.2\lib\Z.ExtensionMethods.dll</HintPath>
+      <HintPath>..\packages\Z.ExtensionMethods.1.1.4.2\lib\Z.ExtensionMethods.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
