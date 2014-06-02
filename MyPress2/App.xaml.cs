@@ -19,7 +19,7 @@ namespace MyPress2
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            RootVisual = new MainPaige();
+            RootVisual = new WinEnter();
 
             
             

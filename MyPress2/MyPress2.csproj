@@ -60,15 +60,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.SL5">
-      <HintPath>..\..\..\MyPress\packages\MvvmLightLibs.4.2.30.0\lib\SL5\GalaSoft.MvvmLight.Extras.SL5.dll</HintPath>
+      <HintPath>..\..\..\Visual Studio 2012\Projects\MyPress\packages\MvvmLightLibs.4.2.30.0\lib\SL5\GalaSoft.MvvmLight.Extras.SL5.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.SL5">
-      <HintPath>..\..\..\MyPress\packages\MvvmLightLibs.4.2.30.0\lib\SL5\GalaSoft.MvvmLight.SL5.dll</HintPath>
+      <HintPath>..\..\..\Visual Studio 2012\Projects\MyPress\packages\MvvmLightLibs.4.2.30.0\lib\SL5\GalaSoft.MvvmLight.SL5.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Effects, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Expression.Interactions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\..\MyPress\packages\CommonServiceLocator.1.0\lib\SL30\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\..\Visual Studio 2012\Projects\MyPress\packages\CommonServiceLocator.1.0\lib\SL30\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="syncfusion.chart.silverlight, Version=11.104.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
@@ -115,9 +115,6 @@
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\WinEnter.xaml.cs">
-      <DependentUpon>WinEnter.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -126,10 +123,6 @@
     </ApplicationDefinition>
     <Page Include="Skins\MainSkin.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\WinEnter.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
@@ -178,6 +171,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
