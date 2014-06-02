@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using TweetSharp;
+//using TweetSharp;
 
 
 namespace TestsDlls
@@ -17,7 +17,7 @@ namespace TestsDlls
 
 
 
-            const string consumerKey = "z1X2qDLJ3AidM9cTa6f5lTxiS"; // The application's consumer key
+          /*  const string consumerKey = "z1X2qDLJ3AidM9cTa6f5lTxiS"; // The application's consumer key
             const string consumerSecret = "I5j9IlvsDKzfCl8n18nhio0nZNhhDwX982jsyGBUErIANiVW0h";
                 // The application's consumer secret
             const string accessToken = "2262563806-xNCQuuziSdWbx3pr6KUhlGfLPkCi45dsunCPRpi";
@@ -66,7 +66,7 @@ namespace TestsDlls
 
 
 
-            Console.ReadKey();
+            Console.ReadKey();*/
 
 
 

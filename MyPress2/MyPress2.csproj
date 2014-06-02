@@ -59,20 +59,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight.Extras.SL5">
-      <HintPath>..\..\..\Visual Studio 2012\Projects\MyPress\packages\MvvmLightLibs.4.2.30.0\lib\SL5\GalaSoft.MvvmLight.Extras.SL5.dll</HintPath>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\packages\MvvmLightLibs.4.4.32.1\lib\SL5\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight.SL5">
-      <HintPath>..\..\..\Visual Studio 2012\Projects\MyPress\packages\MvvmLightLibs.4.2.30.0\lib\SL5\GalaSoft.MvvmLight.SL5.dll</HintPath>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\packages\MvvmLightLibs.4.4.32.1\lib\SL5\GalaSoft.MvvmLight.Extras.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Effects, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Expression.Interactions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\..\Visual Studio 2012\Projects\MyPress\packages\CommonServiceLocator.1.0\lib\SL30\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="syncfusion.chart.silverlight, Version=11.104.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
-    <Reference Include="Syncfusion.Linq.Silverlight, Version=11.104.0.21, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
@@ -83,7 +82,7 @@
     <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Pivot, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Interactivity, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\SL5\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.4.4.32.1\lib\SL5\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
@@ -115,6 +114,12 @@
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\RegWin.xaml.cs">
+      <DependentUpon>RegWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\winenter.xaml.cs">
+      <DependentUpon>winenter.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -125,12 +130,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\RegWin.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\winenter.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Fonts\Fontscafe_HandShopTypography-A20_demo.ttf" />
+    <BlendEmbeddedFont Include="Fonts\Fontscafe_HandShopTypography-A20_demo.ttf">
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
     <Resource Include="Fonts\HTOWERT.TTF" />
     <Resource Include="Fonts\HTOWERTI.TTF" />
-    <Resource Include="Fonts\Press Style.ttf" />
+    <BlendEmbeddedFont Include="Fonts\Press Style.ttf">
+      <All>True</All>
+      <AutoFill>True</AutoFill>
+    </BlendEmbeddedFont>
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\ServiceReference1\MyPressService.wsdl" />
@@ -143,10 +162,11 @@
     <None Include="Service References\ServiceReference1\MyPressService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Images\backroundAunt.png" />
-    <Resource Include="Images\pen.png" />
-    <Resource Include="Images\magnit.png" />
+    <Content Include="Image\fonSmi.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ServiceReferences.ClientConfig" />
+    <Resource Include="Image\клякса1.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\MyPress.Web\Resource\RegistrationDataResources.resx">
@@ -172,9 +192,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -190,4 +207,5 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\Silverlight\v5.0\Microsoft.Expression.Blend.Silverlight.targets" />
 </Project>
