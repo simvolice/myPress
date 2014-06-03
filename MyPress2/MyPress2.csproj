@@ -65,6 +65,12 @@
     <Reference Include="GalaSoft.MvvmLight.Extras">
       <HintPath>..\packages\MvvmLightLibs.4.4.32.1\lib\SL5\GalaSoft.MvvmLight.Extras.dll</HintPath>
     </Reference>
+    <Reference Include="Hammock.Silverlight">
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4\Hammock.Silverlight.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib.Silverlight">
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4\ICSharpCode.SharpZipLib.Silverlight.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Effects, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Expression.Interactions, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -72,6 +78,7 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
@@ -86,14 +93,15 @@
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="TweetSharp.Silverlight">
+      <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4\TweetSharp.Silverlight.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MyPress.Web\Resource\RegistrationDataResources.Designer.cs">
-      <Link>Resources\RegistrationDataResources.Designer.cs</Link>
-    </Compile>
-    <Compile Include="..\MyPress.Web\Resource\ValidationErrorResources.Designer.cs">
-      <Link>Resources\ValidationErrorResources.Designer.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -106,6 +114,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\RegistrationDataResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegistrationDataResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ValidationErrorResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationErrorResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -169,13 +187,15 @@
     <Resource Include="Image\клякса1.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\MyPress.Web\Resource\RegistrationDataResources.resx">
-      <Link>Resources\RegistrationDataResources.resx</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\MyPress.Web\Resource\ValidationErrorResources.resx">
-      <Link>Resources\ValidationErrorResources.resx</Link>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Resources\RegistrationDataResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegistrationDataResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ValidationErrorResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidationErrorResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceReference1\MyPressService.disco" />
@@ -194,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ValidateError\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

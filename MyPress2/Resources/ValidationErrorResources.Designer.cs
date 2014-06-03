@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyPress.Web.Resources {
+namespace MyPress2.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MyPress.Web.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class RegistrationDataResources {
+    public class ValidationErrorResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RegistrationDataResources() {
+        internal ValidationErrorResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MyPress.Web.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BusinessApplication4.Web.Resources.RegistrationDataResources", typeof(RegistrationDataResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyPress2.Resources.ValidationErrorResources", typeof(ValidationErrorResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,83 @@ namespace MyPress.Web.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Электронная почта.
+        ///   Ищет локализованную строку, похожую на Ответ на секретный вопрос не может быть длиннее 128 символов.
         /// </summary>
-        public static string EmailLabel {
+        public static string ValidationErrorBadAnswerLength {
             get {
-                return ResourceManager.GetString("EmailLabel", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorBadAnswerLength", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Каким образом ваше имя должно отображаться в приложении.
+        ///   Ищет локализованную строку, похожую на Понятное имя не может быть длиннее 255 символов..
         /// </summary>
-        public static string FriendlyNameDescription {
+        public static string ValidationErrorBadFriendlyNameLength {
             get {
-                return ResourceManager.GetString("FriendlyNameDescription", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorBadFriendlyNameLength", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Понятное имя.
+        ///   Ищет локализованную строку, похожую на Пароль должен иметь длину от 7 до 50 символов.
         /// </summary>
-        public static string FriendlyNameLabel {
+        public static string ValidationErrorBadPasswordLength {
             get {
-                return ResourceManager.GetString("FriendlyNameLabel", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorBadPasswordLength", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Подтверждение пароля.
+        ///   Ищет локализованную строку, похожую на Пароль должен содержать хотя бы один специальный символ, такой как @ или #.
         /// </summary>
-        public static string PasswordConfirmationLabel {
+        public static string ValidationErrorBadPasswordStrength {
             get {
-                return ResourceManager.GetString("PasswordConfirmationLabel", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorBadPasswordStrength", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Пароль должен иметь длину 7 символов и содержать хотя бы один специальный символ, такой как @ или #.
+        ///   Ищет локализованную строку, похожую на Имя пользователя должно иметь длину от 4 до 255 символов.
         /// </summary>
-        public static string PasswordDescription {
+        public static string ValidationErrorBadUserNameLength {
             get {
-                return ResourceManager.GetString("PasswordDescription", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorBadUserNameLength", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Пароль.
+        ///   Ищет локализованную строку, похожую на Недопустимый адрес электронной почты. Он должен быть указан в формате пользователь@компания.ru.
         /// </summary>
-        public static string PasswordLabel {
+        public static string ValidationErrorInvalidEmail {
             get {
-                return ResourceManager.GetString("PasswordLabel", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorInvalidEmail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ответ на секретный вопрос.
+        ///   Ищет локализованную строку, похожую на Недопустимое имя пользователя. Оно должно содержать только алфавитно-цифровые символы.
         /// </summary>
-        public static string SecurityAnswerLabel {
+        public static string ValidationErrorInvalidUserName {
             get {
-                return ResourceManager.GetString("SecurityAnswerLabel", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorInvalidUserName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Секретный вопрос.
+        ///   Ищет локализованную строку, похожую на Пароли не совпадают.
         /// </summary>
-        public static string SecurityQuestionLabel {
+        public static string ValidationErrorPasswordConfirmationMismatch {
             get {
-                return ResourceManager.GetString("SecurityQuestionLabel", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorPasswordConfirmationMismatch", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Имя пользователя.
+        ///   Ищет локализованную строку, похожую на Это поле является обязательным.
         /// </summary>
-        public static string UserNameLabel {
+        public static string ValidationErrorRequiredField {
             get {
-                return ResourceManager.GetString("UserNameLabel", resourceCulture);
+                return ResourceManager.GetString("ValidationErrorRequiredField", resourceCulture);
             }
         }
     }

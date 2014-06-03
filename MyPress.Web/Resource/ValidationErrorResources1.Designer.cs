@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyPress.Web.Resources {
+namespace MyPress.Web.Resource {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MyPress.Web.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BusinessApplication4.Web.Resources.ValidationErrorResources", typeof(ValidationErrorResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyPress.Web.Resource.ValidationErrorResources", typeof(ValidationErrorResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

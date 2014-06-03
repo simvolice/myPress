@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Microsoft.SqlServer.Server;
 using MongoRepository;
-using MyPress.Web.Resources;
+
 
 namespace MyPress.Web
 {
