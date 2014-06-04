@@ -88,15 +88,6 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Имя пользователя2.
-        /// </summary>
-        public static string login {
-            get {
-                return ResourceManager.GetString("login", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на Подтверждение пароля.
         /// </summary>
         public static string PasswordConfirmationLabel {

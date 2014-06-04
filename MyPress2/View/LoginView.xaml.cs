@@ -10,9 +10,9 @@ using System.Windows.Shapes;
 
 namespace MyPress2.View
 {
-	public partial class winenter : UserControl
+	public partial class LoginView : UserControl
 	{
-		public winenter()
+		public LoginView()
 		{
 			// Требуется для инициализации переменных
 			InitializeComponent();

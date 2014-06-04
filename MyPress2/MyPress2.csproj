@@ -130,13 +130,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\RegViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\RegWin.xaml.cs">
-      <DependentUpon>RegWin.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\winenter.xaml.cs">
-      <DependentUpon>winenter.xaml</DependentUpon>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -148,26 +147,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\RegWin.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\winenter.xaml">
+    <Page Include="View\LoginView.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\Fontscafe_HandShopTypography-A20_demo.ttf">
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-    </BlendEmbeddedFont>
-    <Resource Include="Fonts\HTOWERT.TTF" />
-    <Resource Include="Fonts\HTOWERTI.TTF" />
-    <BlendEmbeddedFont Include="Fonts\Press Style.ttf">
-      <All>True</All>
-      <AutoFill>True</AutoFill>
-    </BlendEmbeddedFont>
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\ServiceReference1\MyPressService.wsdl" />
@@ -216,7 +201,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ValidateError\" />
+    <Folder Include="Fonts\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

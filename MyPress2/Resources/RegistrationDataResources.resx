@@ -126,9 +126,6 @@
   <data name="FriendlyNameLabel" xml:space="preserve">
     <value>Понятное имя</value>
   </data>
-  <data name="login" xml:space="preserve">
-    <value>Имя пользователя2</value>
-  </data>
   <data name="PasswordConfirmationLabel" xml:space="preserve">
     <value>Подтверждение пароля</value>
   </data>
