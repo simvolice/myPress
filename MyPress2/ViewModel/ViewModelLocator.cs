@@ -40,6 +40,7 @@ namespace MyPress2.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<LoginViewModel>();
         }
 
         /// <summary>
@@ -53,7 +54,20 @@ namespace MyPress2.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
+               
             }
+        }
+
+        public LoginViewModel MainLogin
+        {
+
+            get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); }
+
+
+
+
+
+
         }
 
         /// <summary>

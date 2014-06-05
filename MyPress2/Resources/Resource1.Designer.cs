@@ -22,14 +22,14 @@ namespace MyPress2.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class RegistrationDataResources {
+    public class Resource1 {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RegistrationDataResources() {
+        internal Resource1() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MyPress2.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyPress2.Resources.RegistrationDataResources", typeof(RegistrationDataResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyPress2.Resources.Resource1", typeof(Resource1).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -138,6 +138,87 @@ namespace MyPress2.Resources {
         public static string UserNameLabel {
             get {
                 return ResourceManager.GetString("UserNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ответ на секретный вопрос не может быть длиннее 128 символов.
+        /// </summary>
+        public static string ValidationErrorBadAnswerLength {
+            get {
+                return ResourceManager.GetString("ValidationErrorBadAnswerLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Понятное имя не может быть длиннее 255 символов..
+        /// </summary>
+        public static string ValidationErrorBadFriendlyNameLength {
+            get {
+                return ResourceManager.GetString("ValidationErrorBadFriendlyNameLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароль должен иметь длину от 7 до 50 символов.
+        /// </summary>
+        public static string ValidationErrorBadPasswordLength {
+            get {
+                return ResourceManager.GetString("ValidationErrorBadPasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароль должен содержать хотя бы один специальный символ, такой как @ или #.
+        /// </summary>
+        public static string ValidationErrorBadPasswordStrength {
+            get {
+                return ResourceManager.GetString("ValidationErrorBadPasswordStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Имя пользователя должно иметь длину от 4 до 255 символов.
+        /// </summary>
+        public static string ValidationErrorBadUserNameLength {
+            get {
+                return ResourceManager.GetString("ValidationErrorBadUserNameLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Недопустимый адрес электронной почты. Он должен быть указан в формате пользователь@компания.ru.
+        /// </summary>
+        public static string ValidationErrorInvalidEmail {
+            get {
+                return ResourceManager.GetString("ValidationErrorInvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Недопустимое имя пользователя. Оно должно содержать только алфавитно-цифровые символы.
+        /// </summary>
+        public static string ValidationErrorInvalidUserName {
+            get {
+                return ResourceManager.GetString("ValidationErrorInvalidUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароли не совпадают.
+        /// </summary>
+        public static string ValidationErrorPasswordConfirmationMismatch {
+            get {
+                return ResourceManager.GetString("ValidationErrorPasswordConfirmationMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Это поле является обязательным.
+        /// </summary>
+        public static string ValidationErrorRequiredField {
+            get {
+                return ResourceManager.GetString("ValidationErrorRequiredField", resourceCulture);
             }
         }
     }

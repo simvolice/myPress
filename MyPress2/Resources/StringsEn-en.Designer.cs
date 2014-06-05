@@ -22,14 +22,14 @@ namespace MyPress2.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ValidationErrorResources {
+    public class StringsEn_en {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ValidationErrorResources() {
+        internal StringsEn_en() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MyPress2.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyPress2.Resources.ValidationErrorResources", typeof(ValidationErrorResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyPress2.Resources.StringsEn-en", typeof(StringsEn_en).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,88 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ответ на секретный вопрос не может быть длиннее 128 символов.
+        ///   Ищет локализованную строку, похожую на Email.
+        /// </summary>
+        public static string EmailLabel {
+            get {
+                return ResourceManager.GetString("EmailLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на fdfdf.
+        /// </summary>
+        public static string FriendlyNameDescription {
+            get {
+                return ResourceManager.GetString("FriendlyNameDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на fdfdfdf.
+        /// </summary>
+        public static string FriendlyNameLabel {
+            get {
+                return ResourceManager.GetString("FriendlyNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на dfdfdfdf.
+        /// </summary>
+        public static string PasswordConfirmationLabel {
+            get {
+                return ResourceManager.GetString("PasswordConfirmationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на fdfd.
+        /// </summary>
+        public static string PasswordDescription {
+            get {
+                return ResourceManager.GetString("PasswordDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на fdfd.
+        /// </summary>
+        public static string PasswordLabel {
+            get {
+                return ResourceManager.GetString("PasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на fff.
+        /// </summary>
+        public static string SecurityAnswerLabel {
+            get {
+                return ResourceManager.GetString("SecurityAnswerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ffff.
+        /// </summary>
+        public static string SecurityQuestionLabel {
+            get {
+                return ResourceManager.GetString("SecurityQuestionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на fdfdf.
+        /// </summary>
+        public static string UserNameLabel {
+            get {
+                return ResourceManager.GetString("UserNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на fdfdfdf.
         /// </summary>
         public static string ValidationErrorBadAnswerLength {
             get {
@@ -70,7 +151,7 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Понятное имя не может быть длиннее 255 символов..
+        ///   Ищет локализованную строку, похожую на fdfdf.
         /// </summary>
         public static string ValidationErrorBadFriendlyNameLength {
             get {
@@ -79,7 +160,7 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Пароль должен иметь длину от 7 до 50 символов.
+        ///   Ищет локализованную строку, похожую на fdfd.
         /// </summary>
         public static string ValidationErrorBadPasswordLength {
             get {
@@ -88,7 +169,7 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Пароль должен содержать хотя бы один специальный символ, такой как @ или #.
+        ///   Ищет локализованную строку, похожую на fdfdf.
         /// </summary>
         public static string ValidationErrorBadPasswordStrength {
             get {
@@ -97,7 +178,7 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Имя пользователя должно иметь длину от 4 до 255 символов.
+        ///   Ищет локализованную строку, похожую на fdfd.
         /// </summary>
         public static string ValidationErrorBadUserNameLength {
             get {
@@ -106,7 +187,7 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Недопустимый адрес электронной почты. Он должен быть указан в формате пользователь@компания.ru.
+        ///   Ищет локализованную строку, похожую на dfdfdf.
         /// </summary>
         public static string ValidationErrorInvalidEmail {
             get {
@@ -115,7 +196,7 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Недопустимое имя пользователя. Оно должно содержать только алфавитно-цифровые символы.
+        ///   Ищет локализованную строку, похожую на fdfd.
         /// </summary>
         public static string ValidationErrorInvalidUserName {
             get {
@@ -124,7 +205,7 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Пароли не совпадают.
+        ///   Ищет локализованную строку, похожую на fdfd.
         /// </summary>
         public static string ValidationErrorPasswordConfirmationMismatch {
             get {
@@ -133,7 +214,7 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Это поле является обязательным.
+        ///   Ищет локализованную строку, похожую на dfdfdf.
         /// </summary>
         public static string ValidationErrorRequiredField {
             get {
