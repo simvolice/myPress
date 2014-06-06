@@ -22,7 +22,7 @@ namespace MyPress2.Model
 
 
 
-            var item = new DataItem(data.Login, data.Pass, data.Email);
+            var item = new DataItem(string.Empty, string.Empty, string.Empty);
             callback(item, null);
 
 

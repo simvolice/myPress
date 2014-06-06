@@ -4,6 +4,8 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:command="http://www.galasoft.ch/mvvmlight"
+
 
     mc:Ignorable="d"
 	x:Class="MyPress2.View.LoginView"
@@ -353,19 +355,29 @@
         <Binding Path="MainLogin" Source="{StaticResource Locator}"/>
     </UserControl.DataContext>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" >
         <Grid x:Name="FonSmi" Clip="M0,0L2128,0 2128,1416 0,1416z" HorizontalAlignment="Left" Height="483" UseLayoutRounding="False" VerticalAlignment="Top" Width="640" Margin="0.001,-0.167,-0.001,-2.833">
             <Grid.Background>
                 <ImageBrush Stretch="UniformToFill" ImageSource="/Image/fonSmi.jpg"/>
             </Grid.Background>
-            <TextBlock x:Name="Aunt" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Авторизация" VerticalAlignment="Top" Margin="288.238,222.539,0,0" Foreground="#FF6E6462" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" FontSize="12" FontWeight="Bold"/>
+            <TextBlock x:Name="Aunt" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Залогинимся" VerticalAlignment="Top" Margin="288.238,222.539,0,0" Foreground="#FF6E6462" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" FontSize="12" FontWeight="Bold"/>
             <TextBlock x:Name="Log" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Логин:" VerticalAlignment="Top" Margin="229,249.983,0,0" Foreground="#FF514243" FontSize="9.333"/>
-            <TextBox x:Name="UserNameLabel" HorizontalAlignment="Left" Height="16" Margin="279.657,249.826,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135.5" FontSize="8" TextAlignment="Center" Style="{StaticResource TextBoxStyle1}" Text="{Binding User, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Press Style" CharacterSpacing="10"/>
+           
+            
+            
+            <TextBox x:Name="UserNameLabel" HorizontalAlignment="Left" Height="16" Margin="279.657,249.826,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135.5" FontSize="8" TextAlignment="Center" Style="{StaticResource TextBoxStyle1}" Text="{Binding User, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Press Style" CharacterSpacing="10">
+               
+
+
+            </TextBox>
+          
+            
+            
             <HyperlinkButton x:Name="Reg" Content="Регистрация" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="232.161,311.318,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold"/>
             <HyperlinkButton x:Name="Recovpass" Content="Забыли пароль?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="344.489,311.316,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold"/>
             <TextBlock x:Name="Pass" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Пароль:" VerticalAlignment="Top" Margin="222.833,276.317,0,0" Foreground="#FF514243" FontSize="9.333"/>
-            <Button x:Name="Enter" Content="Войти" Style="{StaticResource ButtonStyle7}" Margin="268.162,307.204,250.838,85.595" RenderTransformOrigin="0.5,0.5" FontSize="13.333"/>
-            <PasswordBox HorizontalAlignment="Left" Margin="280,274,0,0" VerticalAlignment="Top" Width="135" Height="16" x:Name="PasswordLabel" Password="{Binding Path=Password, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True}" IsTabStop="True">
+            <Button x:Name="Enter" IsEnabled="{Binding Path=EnableButtonEnter}" Content="Войти" Style="{StaticResource ButtonStyle7}" Margin="268.162,307.204,250.838,85.595" RenderTransformOrigin="0.5,0.5" FontSize="13.333"/>
+            <PasswordBox HorizontalAlignment="Left" Margin="280,274,0,0" VerticalAlignment="Top" Width="135" Height="16" x:Name="PasswordLabel" Password="{Binding Path=Password, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" IsTabStop="True">
               
 
             </PasswordBox>

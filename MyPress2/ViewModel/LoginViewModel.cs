@@ -7,10 +7,16 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Internal.Pivot.Interactivity;
 using MyPress2.Model;
 using MyPress2.Resources;
+using System.Runtime.CompilerServices;
+
+
 
 namespace MyPress2.ViewModel
 {
@@ -20,34 +26,108 @@ namespace MyPress2.ViewModel
         
            private readonly IDataService _dataService;
 
+           private RelayCommand _myCommand;
 
+
+
+           /// <summary>
+           /// The <see cref="EnableButtonEnter" /> property's name.
+           /// </summary>
+           public const string EnableButtonEnterPropertyName = "EnableButtonEnter";
+
+           private bool _enableButtonEnter = false;
+
+           /// <summary>
+           /// Sets and gets the EnableButtonEnter property.
+           /// Changes to that property's value raise the PropertyChanged event. 
+           /// </summary>
+           public bool EnableButtonEnter
+           {
+               get
+               {
+                   return _enableButtonEnter;
+               }
+
+               set
+               {
+                   if (_enableButtonEnter == value)
+                   {
+                       return;
+                   }
+
+                   RaisePropertyChanging(EnableButtonEnterPropertyName);
+                   _enableButtonEnter = value;
+                   RaisePropertyChanged(EnableButtonEnterPropertyName);
+               }
+           }
+
+
+           /// <summary>
+           /// Gets the MyCommand.
+           /// </summary>
+           public RelayCommand MyCommand
+           {
+               get
+               {
+                   return _myCommand ?? (_myCommand = new RelayCommand(
+                       ExecuteMyCommand,
+                       CanExecuteMyCommand));
+               }
+           }
+
+           private void ExecuteMyCommand()
+           {
+
+              
+
+
+
+
+
+           }
+
+           private bool CanExecuteMyCommand()
+           {
+               return true;
+           }
       
+
+
+
+
+
         public const string PassProp = "Password";
 
         private string _password = string.Empty;
 
 
         [Display(Name = "PasswordLabel", ResourceType = typeof(Resource1))]
-        [Required]
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
         public string Password
         {
             get { return _password; }
 
             set
             {
-                if (_password != value)
+                if (_password == value)
                 {
+                    return;
 
-
-
-
-
-                    ValidateObject();
-                    _password = value;
-                    RaisePropertyChanged(PassProp);
-                    
 
                 }
+
+                   
+                    _password = value;
+                ValidateProperty(value);
+                    RaisePropertyChanged(PassProp);
+
+
+                    if (string.IsNullOrWhiteSpace(_password) || string.IsNullOrWhiteSpace(_user))
+                        EnableButtonEnter = false;
+                    else
+
+                        EnableButtonEnter = true;
+
 
 
             }
@@ -65,9 +145,9 @@ namespace MyPress2.ViewModel
 
 
 
-        [Display(Name = "UserNameLabel", ResourceType = typeof(Resource1))]
-        [Required]
-        public string User
+      [Display(Name = "UserNameLabel", ResourceType = typeof(Resource1))]
+      [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
+      public string User
         {
             get
             {
@@ -76,134 +156,43 @@ namespace MyPress2.ViewModel
 
             set
             {
-                if (_user != value)
+                if (_user == value)
                 {
 
 
+                   
 
 
+                    return;
 
-                  ValidateObject();
-                _user = value;
-                RaisePropertyChanged(UserProp);
+                }
                
+                
+                 
+               
+                _user = value;
+               ValidateProperty(value);
+                RaisePropertyChanged(UserProp);
 
-                }
-            
-            
-            }
+
+                if (string.IsNullOrWhiteSpace(_user) || string.IsNullOrWhiteSpace(_password))
+                    EnableButtonEnter = false;
+                else
+             
+                EnableButtonEnter = true;
+
+
+
+            }  
+   
+
+
+
+      
         }
 
 
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        public void NotifyErrorsChanged(string propertyName)
-        {
-            if (ErrorsChanged != null)
-                ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
-        }
-
-
-
-        public readonly IDictionary<string, IList<string>> _errors = new Dictionary<string, IList<string>>();
-
-        public IEnumerable GetErrors(string propertyName)
-        {
-            if (_errors.ContainsKey(propertyName))
-            {
-                IList<string> propertyErrors = _errors[propertyName];
-                foreach (string propertyError in propertyErrors)
-                {
-                    yield return propertyError;
-                }
-            }
-            yield break;
-        }
-
-        public bool HasErrors
-        {
-            get { return _errors.Count > 0; }
-        }
-
-
-
-        public bool ValidateObject()
-        {
-            ViewModelBase objectToValidate = this;
-            _errors.Clear();
-            Type objectType = objectToValidate.GetType();
-            PropertyInfo[] properties = objectType.GetProperties();
-            foreach (PropertyInfo property in properties)
-            {
-                if (property.GetCustomAttributes(typeof(ValidationAttribute), true).Any())
-                {
-                    object value = property.GetValue(objectToValidate, null);
-                    ValidateProperty(property.Name, value);
-                }
-            }
-
-            return !HasErrors;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Для проверки на ввод пользователем
-        /// </summary>
-        /// <param name="propertyName">Имя проверяемого свойства</param>
-        /// <param name="value">Значение из свойства</param>
-        public void ValidateProperty(string propertyName, object value)
-        {
-            ViewModelBase objectToValidate = this;
-
-
-
-
-
-            var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateProperty(
-                value,
-                new ValidationContext(objectToValidate, null, null)
-                {
-                    MemberName = propertyName
-                },
-                results);
-
-            if (isValid)
-                RemoveErrorsForProperty(propertyName);
-            else
-                AddErrorsForProperty(propertyName, results);
-
-            NotifyErrorsChanged(propertyName);
-        }
-
-
-
-
-        private void AddErrorsForProperty(string propertyName, IEnumerable<ValidationResult> validationResults)
-        {
-            RemoveErrorsForProperty(propertyName);
-            _errors.Add(propertyName, validationResults.Select(vr => vr.ErrorMessage).ToList());
-        }
-
-
-
-
-
-        private void RemoveErrorsForProperty(string propertyName)
-        {
-            if (_errors.ContainsKey(propertyName))
-                _errors.Remove(propertyName);
-        }
+      
 
         
         
@@ -226,20 +215,122 @@ namespace MyPress2.ViewModel
                     }
 
 
-                    User = item.User;
+
+                   User = item.User;
                     Password = item.Pass;
 
-
+                    EnableButtonEnter = false;
 
 
 
                 });
         
         
-        
-        
-        
-        
+       
         }
+
+
+
+
+
+        private Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        private object threadLock = new object();
+
+        public bool IsValid
+        {
+            get { return !this.HasErrors; }
+
+        }
+
+        public void OnErrorsChanged(string propertyName)
+        {
+            if (ErrorsChanged != null)
+                ErrorsChanged(this, new DataErrorsChangedEventArgs(propertyName));
+        }
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            if (!string.IsNullOrEmpty(propertyName))
+            {
+                if (errors.ContainsKey(propertyName) && (errors[propertyName] != null) && errors[propertyName].Count > 0)
+                    return errors[propertyName].ToList();
+                else
+                    return null;
+            }
+            else
+                return errors.SelectMany(err => err.Value.ToList());
+        }
+
+        public bool HasErrors
+        {
+            get { return errors.Any(propErrors => propErrors.Value != null && propErrors.Value.Count > 0); }
+        }
+
+        public void ValidateProperty(object value, [CallerMemberName] string propertyName = null)
+        {
+            lock (threadLock)
+            {
+                var validationContext = new ValidationContext(this, null, null);
+                validationContext.MemberName = propertyName;
+                var validationResults = new List<ValidationResult>();
+                Validator.TryValidateProperty(value, validationContext, validationResults);
+
+                //clear previous errors from tested property
+                if (errors.ContainsKey(propertyName))
+                    errors.Remove(propertyName);
+                OnErrorsChanged(propertyName);
+
+                HandleValidationResults(validationResults);
+            }
+        }
+
+        public void Validate()
+        {
+            lock (threadLock)
+            {
+                var validationContext = new ValidationContext(this, null, null);
+                var validationResults = new List<ValidationResult>();
+                Validator.TryValidateObject(this, validationContext, validationResults, true);
+
+                //clear all previous errors
+                var propNames = errors.Keys.ToList();
+                errors.Clear();
+                propNames.ForEach(pn => OnErrorsChanged(pn));
+
+                HandleValidationResults(validationResults);
+            }
+        }
+
+        private void HandleValidationResults(List<ValidationResult> validationResults)
+        {
+            //Group validation results by property names
+            var resultsByPropNames = from res in validationResults
+                                     from mname in res.MemberNames
+                                     group res by mname into g
+                                     select g;
+
+            //add errors to dictionary and inform  binding engine about errors
+            foreach (var prop in resultsByPropNames)
+            {
+                var messages = prop.Select(r => r.ErrorMessage).ToList();
+                errors.Add(prop.Key, messages);
+                OnErrorsChanged(prop.Key);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
     }
 }
