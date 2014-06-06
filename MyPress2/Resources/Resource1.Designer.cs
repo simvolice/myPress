@@ -61,6 +61,15 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Войти.
+        /// </summary>
+        public static string ButtEnter {
+            get {
+                return ResourceManager.GetString("ButtEnter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Электронная почта.
         /// </summary>
         public static string EmailLabel {
@@ -111,6 +120,24 @@ namespace MyPress2.Resources {
         public static string PasswordLabel {
             get {
                 return ResourceManager.GetString("PasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Регистрация.
+        /// </summary>
+        public static string Regestr {
+            get {
+                return ResourceManager.GetString("Regestr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Забыли пароль?.
+        /// </summary>
+        public static string RemembPass {
+            get {
+                return ResourceManager.GetString("RemembPass", resourceCulture);
             }
         }
         
@@ -219,6 +246,15 @@ namespace MyPress2.Resources {
         public static string ValidationErrorRequiredField {
             get {
                 return ResourceManager.GetString("ValidationErrorRequiredField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Залогинимся.
+        /// </summary>
+        public static string Zalogin {
+            get {
+                return ResourceManager.GetString("Zalogin", resourceCulture);
             }
         }
     }
