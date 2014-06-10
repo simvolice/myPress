@@ -15,7 +15,7 @@ using Microsoft.Internal.Pivot.Interactivity;
 using MyPress2.Model;
 using MyPress2.Resources;
 using System.Runtime.CompilerServices;
-
+using MyPress2.View;
 
 
 namespace MyPress2.ViewModel
@@ -78,7 +78,8 @@ namespace MyPress2.ViewModel
            private void ExecuteMyCommand()
            {
 
-              
+              RegWin regWin = new RegWin();
+               regWin.Show();
 
 
 
@@ -216,7 +217,7 @@ namespace MyPress2.ViewModel
 
 
 
-                   User = item.User;
+                    User = item.User;
                     Password = item.Pass;
 
                     EnableButtonEnter = false;

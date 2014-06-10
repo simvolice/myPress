@@ -17,12 +17,12 @@ namespace MyPress2.Model
         {
             // Use this to connect to the actual data service
 
-            ServiceReference1.Data data = new Data();
+           
             
 
 
 
-            var item = new DataItem(string.Empty, string.Empty, string.Empty);
+            var item = new DataItem(string.Empty, string.Empty, string.Empty, string.Empty);
             callback(item, null);
 
 

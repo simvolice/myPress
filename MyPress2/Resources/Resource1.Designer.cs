@@ -70,6 +70,15 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Отмена.
+        /// </summary>
+        public static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Электронная почта.
         /// </summary>
         public static string EmailLabel {
@@ -93,6 +102,15 @@ namespace MyPress2.Resources {
         public static string FriendlyNameLabel {
             get {
                 return ResourceManager.GetString("FriendlyNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на OK.
+        /// </summary>
+        public static string OKButton {
+            get {
+                return ResourceManager.GetString("OKButton", resourceCulture);
             }
         }
         

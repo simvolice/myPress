@@ -378,7 +378,7 @@
           
             
             
-            <HyperlinkButton x:Name="Reg" Content="{Binding Source={StaticResource StResource1}, Path=Resource1.Regestr}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="232.161,311.318,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold"/>
+            <HyperlinkButton x:Name="Reg" Content="{Binding Source={StaticResource StResource1}, Path=Resource1.Regestr}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="232.161,311.318,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold" Command="{Binding Path=MyCommand}"/>
            
             
             <HyperlinkButton x:Name="Recovpass" Content="{Binding Source={StaticResource StResource1}, Path=Resource1.RemembPass}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="344.489,311.316,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold"/>

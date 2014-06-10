@@ -120,6 +120,9 @@
   <data name="ButtEnter" xml:space="preserve">
     <value>Войти</value>
   </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Электронная почта</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="FriendlyNameLabel" xml:space="preserve">
     <value>Понятное имя</value>
+  </data>
+  <data name="OKButton" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="PasswordConfirmationLabel" xml:space="preserve">
     <value>Подтверждение пароля</value>

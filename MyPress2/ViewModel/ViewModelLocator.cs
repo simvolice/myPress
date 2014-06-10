@@ -41,6 +41,7 @@ namespace MyPress2.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<RegViewModel>();
         }
 
         /// <summary>
@@ -58,17 +59,34 @@ namespace MyPress2.ViewModel
             }
         }
 
+         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
         public LoginViewModel MainLogin
         {
 
-            get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); }
-
-
-
-
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LoginViewModel>();
+            }
 
 
         }
+
+         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+         public RegViewModel MainRegViewModel
+         {
+
+             get
+             {
+                 return ServiceLocator.Current.GetInstance<RegViewModel>();
+             }
+
+
+
+         }
 
         /// <summary>
         /// Cleans up all the resources.

@@ -13,7 +13,7 @@ namespace MyPress2.Design
 
 
 
-            var item = new DataItem(string.Empty, string.Empty, string.Empty);
+            var item = new DataItem(string.Empty, string.Empty, string.Empty, string.Empty);
             callback(item, null);
         }
     }
