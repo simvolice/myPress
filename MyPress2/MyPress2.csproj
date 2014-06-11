@@ -168,6 +168,9 @@
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RegWin.xaml.cs">
       <DependentUpon>RegWin.xaml</DependentUpon>
     </Compile>
@@ -188,6 +191,10 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\RegWin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -198,6 +205,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Fonts\segoeui.ttf" />
+    <Resource Include="Fonts\segoeuib.ttf" />
+    <Resource Include="Fonts\segoeuii.ttf" />
+    <Resource Include="Fonts\segoeuiz.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\ServiceReference1\MyPressService.wsdl" />
@@ -210,10 +221,22 @@
     <None Include="Service References\ServiceReference1\MyPressService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Resource Include="Image\fon.png" />
+    <Resource Include="Image\close-icon-white-border.png" />
     <Content Include="Image\fonSmi.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Image\regtekstur.png" />
+    <Resource Include="Image\magnifier.png" />
+    <Resource Include="Image\P.png" />
+    <Resource Include="Image\sarko_robot.png" />
+    <Resource Include="Image\Слой 1.png" />
+    <Resource Include="Image\Слой 4.png" />
+    <Resource Include="Image\Слой 5.png" />
+    <Resource Include="Image\Слой 6 копия 2.png" />
+    <Resource Include="Image\Слой 6 копия.png" />
+    <Resource Include="Image\Слой 6.png" />
+    <Resource Include="Image\Слой 7.png" />
     <Content Include="ServiceReferences.ClientConfig" />
     <Resource Include="Image\клякса1.png" />
   </ItemGroup>
@@ -250,9 +273,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Fonts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

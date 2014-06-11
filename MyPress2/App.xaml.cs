@@ -3,6 +3,7 @@ using System.Windows;
 using GalaSoft.MvvmLight.Threading;
 using MyPress2.View;
 using MyPress2.ViewModel;
+using MyPress3;
 
 namespace MyPress2
 {
@@ -19,7 +20,7 @@ namespace MyPress2
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            RootVisual = new LoginView();
+            RootVisual = new MainPage();
 
             
             
