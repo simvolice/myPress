@@ -29,7 +29,7 @@ namespace MyPress2.ViewModel
     public class RegViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         private readonly IDataService _dataService;
-       
+      List<ValidationResult> validationResults = new List<ValidationResult>();
 
         /// <summary>
         /// The <see cref="User" /> property's name.
@@ -103,7 +103,7 @@ namespace MyPress2.ViewModel
                 
                 _myPassword = value;
                 ValidateProperty(value);
-                CheckPasswordConfirmation();
+             
                 RaisePropertyChanged(PasswordPropertyName);
             }
         }
@@ -204,9 +204,12 @@ namespace MyPress2.ViewModel
             if (this.Password != this.RepPassword)
             {
 
-             
-             
+                
 
+
+                validationResults.Add(new ValidationResult(Resource1.ValidationErrorPasswordConfirmationMismatch, new string[] { "RepPassword" }));
+
+                HandleValidationResults(validationResults);
 
             }
         }

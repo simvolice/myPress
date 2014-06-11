@@ -23,7 +23,37 @@ namespace MyPress2.ViewModel
     
     public class LoginViewModel : ViewModelBase, INotifyDataErrorInfo
     {
-        
+
+
+
+        private RelayCommand restorePassCommand;
+
+        /// <summary>
+        /// Gets the MyCommand.
+        /// </summary>
+        public RelayCommand RestorePasswCommand
+        {
+            get
+            {
+                return restorePassCommand ?? (restorePassCommand = new RelayCommand(
+                    ShowRestoreWin,
+                    CanShowRestoreWin));
+            }
+        }
+
+        private void ShowRestoreWin()
+        {
+            RestorePassword restorePassword = new RestorePassword();
+            restorePassword.Show();
+        }
+
+        private bool CanShowRestoreWin()
+        {
+            return true;
+        }
+
+
+
            private readonly IDataService _dataService;
 
            private RelayCommand _myCommand;

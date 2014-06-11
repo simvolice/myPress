@@ -160,6 +160,33 @@ namespace MyPress2.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Восстановить.
+        /// </summary>
+        public static string RestoreButton {
+            get {
+                return ResourceManager.GetString("RestoreButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Восстановление доступа к системе..
+        /// </summary>
+        public static string RestoreEnter {
+            get {
+                return ResourceManager.GetString("RestoreEnter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пожалуйста, укажите e-mail, который Вы использовали для входа в систему..
+        /// </summary>
+        public static string RestoreEnterFull {
+            get {
+                return ResourceManager.GetString("RestoreEnterFull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ответ на секретный вопрос.
         /// </summary>
         public static string SecurityAnswerLabel {

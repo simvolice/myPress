@@ -42,6 +42,7 @@ namespace MyPress2.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<RegViewModel>();
+            SimpleIoc.Default.Register<RestorePassViewModel>();
         }
 
         /// <summary>
@@ -87,6 +88,19 @@ namespace MyPress2.ViewModel
 
 
          }
+
+
+
+
+        public RestorePassViewModel RestorePass
+        {
+
+            get { return ServiceLocator.Current.GetInstance<RestorePassViewModel>(); }
+
+
+
+
+        }
 
         /// <summary>
         /// Cleans up all the resources.

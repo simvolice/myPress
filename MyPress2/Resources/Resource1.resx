@@ -151,6 +151,15 @@
   <data name="RemembPass" xml:space="preserve">
     <value>Забыли пароль?</value>
   </data>
+  <data name="RestoreButton" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="RestoreEnter" xml:space="preserve">
+    <value>Восстановление доступа к системе.</value>
+  </data>
+  <data name="RestoreEnterFull" xml:space="preserve">
+    <value>Пожалуйста, укажите e-mail, который Вы использовали для входа в систему.</value>
+  </data>
   <data name="SecurityAnswerLabel" xml:space="preserve">
     <value>Ответ на секретный вопрос</value>
   </data>
