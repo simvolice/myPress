@@ -165,11 +165,14 @@
     <Compile Include="ViewModel\RegViewModel.cs" />
     <Compile Include="ViewModel\RestorePassViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
+    <Compile Include="View\LoginViews.xaml.cs">
+      <DependentUpon>LoginViews.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="View\MainPages.xaml.cs">
+      <DependentUpon>MainPages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainUserControl.xaml.cs">
+      <DependentUpon>MainUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RegWin.xaml.cs">
       <DependentUpon>RegWin.xaml</DependentUpon>
@@ -187,13 +190,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\LoginView.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    <Page Include="View\LoginViews.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainPages.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegWin.xaml">
       <Generator>MSBuild:Compile</Generator>

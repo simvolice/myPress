@@ -11,11 +11,13 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 using Microsoft.Internal.Pivot.Interactivity;
 using MyPress2.Model;
 using MyPress2.Resources;
 using System.Runtime.CompilerServices;
 using MyPress2.View;
+using Syncfusion.Windows.Controls.Primitives;
 
 
 namespace MyPress2.ViewModel
@@ -24,6 +26,42 @@ namespace MyPress2.ViewModel
     public class LoginViewModel : ViewModelBase, INotifyDataErrorInfo
     {
 
+
+
+
+        private RelayCommand enterCommand;
+
+        /// <summary>
+        /// Gets the MyCommand.
+        /// </summary>
+        public RelayCommand EnteRelayCommand
+        {
+            get
+            {
+                return enterCommand ?? (enterCommand = new RelayCommand(
+                    ExecuteEnter,
+                    CanExecuteEnter));
+            }
+        }
+
+        private void ExecuteEnter()
+        {
+
+
+       
+
+
+
+
+
+
+
+        }
+
+        private bool CanExecuteEnter()
+        {
+            return true;
+        }
 
 
         private RelayCommand restorePassCommand;
@@ -108,10 +146,7 @@ namespace MyPress2.ViewModel
            private void ExecuteMyCommand()
            {
 
-              RegWin regWin = new RegWin();
-               regWin.Show();
-
-
+              
 
 
 
