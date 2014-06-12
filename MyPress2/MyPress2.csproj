@@ -223,18 +223,16 @@
     </None>
     <Resource Include="Image\fon.png" />
     <Resource Include="Image\close-icon-white-border.png" />
+    <Resource Include="Image\1851.jpg" />
     <Content Include="Image\fonSmi.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Image\regtekstur.png" />
     <Resource Include="Image\magnifier.png" />
     <Resource Include="Image\P.png" />
-    <Resource Include="Image\sarko_robot.png" />
-    <Resource Include="Image\Слой 1.png" />
+    <Resource Include="Image\backGround.png" />
     <Resource Include="Image\Слой 4.png" />
     <Resource Include="Image\Слой 5.png" />
-    <Resource Include="Image\Слой 6 копия 2.png" />
-    <Resource Include="Image\Слой 6 копия.png" />
     <Resource Include="Image\Слой 6.png" />
     <Resource Include="Image\Слой 7.png" />
     <Content Include="ServiceReferences.ClientConfig" />
