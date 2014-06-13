@@ -48,13 +48,10 @@ namespace MyPress2.ViewModel
         {
 
 
-       
+            Uri uri = new Uri("/MainPages", UriKind.Relative);
+            Messenger.Default.Send<Uri>(uri, "Navigate"); 
 
-
-
-
-
-
+           
 
         }
 
@@ -147,7 +144,8 @@ namespace MyPress2.ViewModel
            {
 
               
-
+               RegWin regWin = new RegWin();
+               regWin.Show();
 
 
            }

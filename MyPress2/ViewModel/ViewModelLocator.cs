@@ -9,6 +9,8 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
+using System;
+using System.Windows.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
@@ -26,6 +28,10 @@ namespace MyPress2.ViewModel
     /// </summary>
     public class ViewModelLocator
     {
+      
+
+
+
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -42,7 +48,13 @@ namespace MyPress2.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<RegViewModel>();
+         
+            
+            
             SimpleIoc.Default.Register<RestorePassViewModel>();
+           
+           
+        
         }
 
         /// <summary>
@@ -91,7 +103,9 @@ namespace MyPress2.ViewModel
 
 
 
-
+         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
         public RestorePassViewModel RestorePass
         {
 

@@ -62,7 +62,7 @@
         <Border x:Name="ContentBorder" >
 
             <navigation:Frame x:Name="ContentFrame" 
-				Source="/LoginViews" RenderTransformOrigin="0.5,0.5">
+				Source="/LoginViews" RenderTransformOrigin="0.5,0.5" x:FieldModifier="public" JournalOwnership="OwnsJournal">
                 <navigation:Frame.RenderTransform>
                     <CompositeTransform/>
                 </navigation:Frame.RenderTransform>

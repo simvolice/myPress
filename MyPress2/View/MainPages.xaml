@@ -3782,7 +3782,7 @@
             </sdk:TabItem>
         </sdk:TabControl>
         <TextBlock x:Name="rubrika" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Рубрики" Margin="112,13,0,451" Foreground="White" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontSize="9.333" FontWeight="Bold" Opacity="0.85" Grid.Column="1"/>
-        <HyperlinkButton x:Name="kz" Content="Қаз" Margin="581,7,25,457" FontSize="10.667" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" Foreground="#FFEEDECD" Style="{StaticResource HyperlinkButtonStyle2}" Grid.Column="1"/>
+        <HyperlinkButton x:Name="kz" Command="{Binding GoBackCommand}" Content="Қаз" Margin="581,7,25,457" FontSize="10.667" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" Foreground="#FFEEDECD" Style="{StaticResource HyperlinkButtonStyle2}" Grid.Column="1"/>
         <HyperlinkButton x:Name="rus" Content="Рус" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="555,7,0,0" FontSize="10.667" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" Foreground="#FFEEDECD" Style="{StaticResource HyperlinkButtonStyle2}" Grid.Column="1"/>
         <HyperlinkButton x:Name="eng" Content="Eng" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="529,7,0,0" FontSize="10.667" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" Style="{StaticResource HyperlinkButtonStyle2}" Foreground="#FFEEDECD" Grid.Column="1"/>
     </Grid>

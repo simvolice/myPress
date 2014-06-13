@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPress2.Model;
 using MyPress2.Resources;
@@ -23,7 +24,32 @@ namespace MyPress2.ViewModel
 
     {
 
+        private RelayCommand goBackRelayCommand;
 
+        /// <summary>
+        /// Gets the MyCommand.
+        /// </summary>
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return goBackRelayCommand ?? (goBackRelayCommand = new RelayCommand(
+                    ExecuteMyCommand,
+                    CanExecuteMyCommand));
+            }
+        }
+
+        private void ExecuteMyCommand()
+        {
+            Uri uri = new Uri("/LoginViews", UriKind.Relative);
+            Messenger.Default.Send<Uri>(uri, "Navigate"); 
+
+        }
+
+        private bool CanExecuteMyCommand()
+        {
+            return true;
+        }
 
 
         private readonly IDataService _dataService;
