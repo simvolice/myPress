@@ -19,8 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SilverlightApplicationList>
-    </SilverlightApplicationList>
+    <SilverlightApplicationList>{97C62578-05C2-4269-96B4-F67255488674}|..\MyPress.Client\MyPress.Client.csproj|ClientBin|False</SilverlightApplicationList>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -99,9 +98,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientBin\MyPress2.xap" />
-    <Content Include="MyPress2TestPage.aspx" />
-    <Content Include="MyPress2TestPage.html" />
+    <Content Include="ClientBin\MyPress.Client.xap" />
+    <Content Include="MyPress.ClientTestPage.aspx" />
+    <Content Include="MyPress.ClientTestPage.html" />
     <Content Include="MyPressService.svc" />
     <Content Include="Silverlight.js" />
     <Content Include="Web.config" />
@@ -151,6 +150,7 @@
       <LastGenOutput>ValidationErrorResources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
