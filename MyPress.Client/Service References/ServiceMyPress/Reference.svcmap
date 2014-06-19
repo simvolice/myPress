@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="934c211d-89e2-4d37-80d5-4c9d3d684a91" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1311/MyPressService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MyPressService.xsd" MetadataType="Schema" ID="74a9eeaa-f5d3-49b8-b3c9-f2ea23c1cc28" SourceId="1" SourceUrl="http://localhost:1311/MyPressService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MyPressService1.xsd" MetadataType="Schema" ID="0c80ce6d-423d-41da-94d6-c9f85541aafb" SourceId="1" SourceUrl="http://localhost:1311/MyPressService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MyPressService.disco" MetadataType="Disco" ID="3f3bc2c2-3ade-469b-aa90-24f95fee9bf7" SourceId="1" SourceUrl="http://localhost:1311/MyPressService.svc?disco" />
+    <MetadataFile FileName="MyPressService2.xsd" MetadataType="Schema" ID="d60bd5a0-e878-4376-9da6-639b4c9eee93" SourceId="1" SourceUrl="http://localhost:1311/MyPressService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MyPressService.wsdl" MetadataType="Wsdl" ID="3c2dad30-f0d9-43dd-890e-5713cf4075fa" SourceId="1" SourceUrl="http://localhost:1311/MyPressService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

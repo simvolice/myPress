@@ -1,0 +1,39 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MyPress.Client.App" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+          
+            xmlns:client="clr-namespace:MyPress.Client"
+            xmlns:viewModel="clr-namespace:MyPress.Client.ViewModel"
+            mc:Ignorable="d"  >
+ 
+    
+    <Application.Resources>
+    <!--Global View Model Locator-->
+     
+                           
+      <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+          
+          <ResourceDictionary Source="Skins/MainSkin.xaml"/>
+          <ResourceDictionary>
+
+                   
+          </ResourceDictionary>
+          
+          
+      </ResourceDictionary.MergedDictionaries>
+      
+      
+          
+          
+          
+          
+          
+      <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+            <client:LocalizedStrings x:Key="StResource1" />
+          
+
+
+
+        </ResourceDictionary>
+  </Application.Resources>
+</Application>

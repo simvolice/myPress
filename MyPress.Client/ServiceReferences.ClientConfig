@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IMyPressService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost:1311/MyPressService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IMyPressService"
+                contract="ServiceMyPress.IMyPressService" name="BasicHttpBinding_IMyPressService" />
+        </client>
+    </system.serviceModel>
+</configuration>

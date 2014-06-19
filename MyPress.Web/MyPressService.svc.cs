@@ -14,6 +14,8 @@ namespace MyPress.Web
     // ПРИМЕЧАНИЕ. Чтобы запустить клиент проверки WCF для тестирования службы, выберите элементы MyPressService.svc или MyPressService.svc.cs в обозревателе решений и начните отладку.
     public class MyPressService : IMyPressService
     {
+
+       
         public void QueryToBing(string query, Data data, string market, int countQuery)
         {
 
@@ -48,13 +50,14 @@ namespace MyPress.Web
 
 
 
-
+    
+       
         public void AddUser(Data data)
         {
 
 
             MongoRepository<DataPersistance> repository = new MongoRepository<DataPersistance>();
-            repository.Update(data.GetDataPersistance());
+            repository.Add(data.GetDataPersistance());
 
 
 
@@ -71,7 +74,7 @@ namespace MyPress.Web
 
 
 
-
+      
         public void EnterUser(Data data)
         {
 
@@ -87,6 +90,9 @@ namespace MyPress.Web
 
         }
 
+
+
+      
         public void RestorePass()
         {
             throw new NotImplementedException();
