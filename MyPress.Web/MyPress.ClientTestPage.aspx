@@ -52,7 +52,7 @@
                 errMsg += "Имя метода: " + args.methodName + "     \n";
             }
 
-            создать  новую ошибку(errMsg);
+          
         }
     </script>
 </head>

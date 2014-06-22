@@ -15,7 +15,7 @@ namespace MyPress.Web
         void QueryToBing(string query, Data data, string market, int countQuery);
 
         [OperationContract]
-        void AddUser(Data data);
+        ErrorList AddUser(Data data);
 
 
         [OperationContract]
@@ -25,6 +25,7 @@ namespace MyPress.Web
         [OperationContract]
         void RestorePass();
 
+     
 
        
 

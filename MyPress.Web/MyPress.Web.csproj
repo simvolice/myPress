@@ -44,7 +44,7 @@
       <HintPath>..\packages\TweetSharp.2.3.1\lib\4.0\Hammock.ClientProfile.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Core">
-      <HintPath>D:\ikvmbin-7.2.4630.5\ikvm-7.2.4630.5\bin\IKVM.OpenJDK.Core.dll</HintPath>
+      <HintPath>D:\DownloadFromVlad\ikvmbin-7.2.4630.5\ikvm-7.2.4630.5\bin\IKVM.OpenJDK.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
@@ -63,7 +63,7 @@
       <HintPath>..\packages\TweetSharp.2.3.1\lib\4.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SentiStrengthCom">
-      <HintPath>D:\sentistrength-deploy-test-master\sentistrength-deploy-test-master\bin\SentiStrengthCom.dll</HintPath>
+      <HintPath>D:\DownloadFromVlad\SentiStrengthCom.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Runtime.Serialization" />
@@ -90,9 +90,6 @@
     <Reference Include="TweetSharp">
       <HintPath>..\packages\TweetSharp.2.3.1\lib\4.0\TweetSharp.dll</HintPath>
     </Reference>
-    <Reference Include="VkNet">
-      <HintPath>..\packages\VkNet.1.0.7\lib\net45\VkNet.dll</HintPath>
-    </Reference>
     <Reference Include="Z.ExtensionMethods">
       <HintPath>..\packages\Z.ExtensionMethods.1.1.4.2\lib\Z.ExtensionMethods.dll</HintPath>
     </Reference>
@@ -109,6 +106,7 @@
     <Compile Include="BingSearchContainer.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DataPersistance.cs" />
+    <Compile Include="ErrorList.cs" />
     <Compile Include="IMyPressService.cs" />
     <Compile Include="MyPressService.svc.cs">
       <DependentUpon>MyPressService.svc</DependentUpon>

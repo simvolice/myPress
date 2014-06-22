@@ -6,6 +6,7 @@
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Pass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RepPass" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Data" nillable="true" type="tns:Data" />
@@ -24,4 +25,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Bing" nillable="true" type="tns:Bing" />
+  <xs:simpleType name="ErrorList">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Succes" />
+      <xs:enumeration value="DublicateName" />
+      <xs:enumeration value="DublicateEmail" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ErrorList" nillable="true" type="tns:ErrorList" />
 </xs:schema>

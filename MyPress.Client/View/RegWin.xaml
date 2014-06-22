@@ -989,7 +989,7 @@
 
 
         </Grid>
-        <Button x:Name="OkButton" Command="{Binding OkCommand}" Content="{Binding Resource1.OKButton, Source={StaticResource StResource1}}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="115,243,0,0" Style="{StaticResource ButtonStyle2}" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF483E46" FontSize="10.667" RenderTransformOrigin="0.703,0.545" Height="29"/>
+        <Button x:Name="OkButton" IsEnabled="{Binding EnabButton}" Command="{Binding OkCommand}" Content="{Binding Resource1.OKButton, Source={StaticResource StResource1}}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="87" Margin="115,243,0,0" Style="{StaticResource ButtonStyle2}" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF483E46" FontSize="10.667" RenderTransformOrigin="0.703,0.545" Height="29"/>
         <Button x:Name="CancelButton" Command="{Binding CancelCommand}" Content="{Binding Resource1.CancelButton, Source={StaticResource StResource1}}" VerticalAlignment="Top" Width="104" Margin="201,240,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF483E46" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left" Height="34"/>
     </Grid>
 

@@ -1,6 +1,4 @@
-﻿using VkNet;
-using VkNet.Enums.Filters;
-
+﻿
 namespace MyPress.Web
 {
     public class VkSearch
@@ -22,7 +20,7 @@ namespace MyPress.Web
            const int appID = 4384680; // ID приложения
            const string email = "simvolice@gmail.com"; // email или телефон
            const string pass = "1989aaaAAA@@@"; // пароль для авторизации
-           Settings scope = Settings.All;  	// Права доступа приложения
+         /*  Settings scope = Settings.All;  	// Права доступа приложения
 
            var vk = new VkApi();
            vk.Authorize(appID, email, pass, scope);
@@ -34,7 +32,7 @@ namespace MyPress.Web
 
           var res =  vk.Groups.Search("yvision",out total, null, 10);
         
-        
+        */
         
         
         

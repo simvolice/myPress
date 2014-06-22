@@ -52,22 +52,30 @@ namespace MyPress.Web
 
     
        
-        public void AddUser(Data data)
+        public ErrorList AddUser(Data data)
         {
 
 
             MongoRepository<DataPersistance> repository = new MongoRepository<DataPersistance>();
-            repository.Add(data.GetDataPersistance());
+          
+          
+            if (repository.Exists(x => x.Login == data.Login))
+
+                return ErrorList.DublicateName;
 
 
+            if (repository.Exists(x => x.Email == data.Email))
+                return ErrorList.DublicateEmail;
 
 
-
+            else 
+  repository.Add(data.GetDataPersistance());
+  return ErrorList.Succes;
 
         }
 
 
-
+       
 
 
 
@@ -99,7 +107,9 @@ namespace MyPress.Web
         }
 
 
-     
+
+
+
     }
 
 

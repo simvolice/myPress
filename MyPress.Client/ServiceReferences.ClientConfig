@@ -9,9 +9,9 @@
             </basicHttpBinding>
         </bindings>
         <client>
-            <endpoint address="http://localhost:1311/MyPressService.svc"
-                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IMyPressService"
-                contract="ServiceMyPress.IMyPressService" name="BasicHttpBinding_IMyPressService" />
+            <endpoint address="../MyPressService.svc" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_IMyPressService" contract="ServiceMyPress.IMyPressService"
+                name="BasicHttpBinding_IMyPressService" />
         </client>
     </system.serviceModel>
 </configuration>

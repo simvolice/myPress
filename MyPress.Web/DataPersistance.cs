@@ -32,6 +32,7 @@ namespace MyPress.Web
         
         public string Pass { get; set; }
 
+        public string RepPass { get; set; }
 
        public string Email { get; set; }
 

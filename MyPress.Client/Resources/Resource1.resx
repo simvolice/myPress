@@ -123,6 +123,13 @@
   <data name="CancelButton" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="DublicateEmail" xml:space="preserve">
+    <value>Этот почтовый ящик уже используется</value>
+    <comment> </comment>
+  </data>
+  <data name="DublicateName" xml:space="preserve">
+    <value>Это имя пользователя уже используется</value>
+  </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Электронная почта</value>
   </data>

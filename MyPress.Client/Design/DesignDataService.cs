@@ -5,14 +5,14 @@ namespace MyPress.Client.Design
 {
     public class DesignDataService : IDataService
     {
-        public void GetData(Action<DataItem, Exception> callback)
+        public void GetData(Action<ServiceMyPress.Data, Exception> callback)
         {
           
 
 
 
 
-            var item = new DataItem(string.Empty, string.Empty, string.Empty, string.Empty);
+            var item = new ServiceMyPress.Data();
             callback(item, null);
         }
     }

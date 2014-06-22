@@ -272,7 +272,7 @@ namespace MyPress.Client.ViewModel
 
 
 
-                    User = item.User;
+                    User = item.Login;
                     Password = item.Pass;
 
                     EnableButtonEnter = false;

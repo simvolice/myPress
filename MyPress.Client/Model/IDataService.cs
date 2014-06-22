@@ -4,6 +4,6 @@ namespace MyPress.Client.Model
 {
     public interface IDataService
     {
-        void GetData(Action<DataItem, Exception> callback);
+        void GetData(Action<ServiceMyPress.Data, Exception> callback);
     }
 }

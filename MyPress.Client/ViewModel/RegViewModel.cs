@@ -11,6 +11,8 @@ using GalaSoft.MvvmLight.Command;
 using MyPress.Client.Model;
 using MyPress.Client.Resources;
 using MyPress.Client.ServiceMyPress;
+using System.Reactive.Linq;
+using System.Reactive.Concurrency;
 
 namespace MyPress.Client.ViewModel
 {
@@ -35,6 +37,7 @@ namespace MyPress.Client.ViewModel
 
         private readonly IDataService _dataService;
       List<ValidationResult> validationResults = new List<ValidationResult>();
+      List<ValidationResult> validationName = new List<ValidationResult>();
 
         /// <summary>
         /// The <see cref="User" /> property's name.
@@ -72,6 +75,15 @@ namespace MyPress.Client.ViewModel
                 _myUser = value;
                 ValidateProperty(value);
                 RaisePropertyChanged(UserPropertyName);
+
+
+
+                if (string.IsNullOrWhiteSpace(_myUser) || string.IsNullOrWhiteSpace(_myEmail) || string.IsNullOrWhiteSpace(_myPassword) || string.IsNullOrWhiteSpace(_myRepPassword))
+                    EnabButton = false;
+                else
+
+                    EnabButton = true;
+
             }
         }
 
@@ -110,6 +122,15 @@ namespace MyPress.Client.ViewModel
                 ValidateProperty(value);
              
                 RaisePropertyChanged(PasswordPropertyName);
+
+
+
+                if (string.IsNullOrWhiteSpace(_myUser) || string.IsNullOrWhiteSpace(_myEmail) || string.IsNullOrWhiteSpace(_myPassword) || string.IsNullOrWhiteSpace(_myRepPassword))
+                    EnabButton = false;
+                else
+
+                    EnabButton = true;
+
             }
         }
 
@@ -151,6 +172,15 @@ namespace MyPress.Client.ViewModel
                 _myEmail = value;
                 ValidateProperty(value);
                 RaisePropertyChanged(EmailPropertyName);
+
+
+
+                if (string.IsNullOrWhiteSpace(_myUser) || string.IsNullOrWhiteSpace(_myEmail) || string.IsNullOrWhiteSpace(_myPassword) || string.IsNullOrWhiteSpace(_myRepPassword))
+                    EnabButton = false;
+                else
+
+                    EnabButton = true;
+
             }
         }
 
@@ -188,10 +218,50 @@ namespace MyPress.Client.ViewModel
                 ValidateProperty(value);
                 CheckPasswordConfirmation();
                 RaisePropertyChanged(RepPasswordPropertyName);
+
+
+                if (string.IsNullOrWhiteSpace(_myUser) || string.IsNullOrWhiteSpace(_myEmail) || string.IsNullOrWhiteSpace(_myPassword) || string.IsNullOrWhiteSpace(_myRepPassword))
+                    EnabButton = false;
+                else
+
+                    EnabButton = true;
+
+
+
+
             }
         }
 
+        /// <summary>
+        /// The <see cref="EnabButton" /> property's name.
+        /// </summary>
+        public const string EnabButtonPropertyName = "EnabButton";
 
+        private bool _myButton = false;
+
+        /// <summary>
+        /// Sets and gets the EnabButton property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public bool EnabButton
+        {
+            get
+            {
+                return _myButton;
+            }
+
+            set
+            {
+                if (_myButton == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(EnabButtonPropertyName);
+                _myButton = value;
+                RaisePropertyChanged(EnabButtonPropertyName);
+            }
+        }
 
 
 
@@ -209,7 +279,13 @@ namespace MyPress.Client.ViewModel
             if (this.Password != this.RepPassword)
             {
 
-                
+
+               
+                    EnabButton = false;
+
+                if (errors.ContainsKey("RepPassword"))
+                    errors.Remove("RepPassword");
+                OnErrorsChanged("RepPassword");
 
 
                 validationResults.Add(new ValidationResult(Resource1.ValidationErrorPasswordConfirmationMismatch, new string[] { "RepPassword" }));
@@ -236,18 +312,96 @@ namespace MyPress.Client.ViewModel
             }
         }
 
+
+
+        
+      
+    
+
+
         private void ExecuteMyCommand()
         {
+
+
 
 
             serviceData.Login = User;
             serviceData.Email = Email;
             serviceData.Pass = RepPassword;
 
+
+            var func = Observable.FromEventPattern<AddUserCompletedEventArgs>(myPressService, "AddUserCompleted")
+               .ObserveOnDispatcher();
             myPressService.AddUserAsync(serviceData);
-           
+            func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
 
 
+
+
+          
+
+
+        }
+
+      
+
+     
+      
+
+        private void CheckEr(ErrorList c)
+        {
+
+          
+
+            if (c.HasFlag(ErrorList.DublicateName))
+            {
+
+
+                errors.Remove("User");
+                OnErrorsChanged("User");
+
+                errors.Remove("Email");
+                OnErrorsChanged("Email");
+
+                validationName.Add(new ValidationResult(Resource1.DublicateName, new string[] { "User" }));
+
+                HandleValidationResults(validationName);
+
+
+            }
+
+
+            else if (c.HasFlag(ErrorList.DublicateEmail))
+            {
+
+                errors.Remove("User");
+                OnErrorsChanged("User");
+
+                errors.Remove("Email");
+                OnErrorsChanged("Email");
+
+                validationName.Add(new ValidationResult(Resource1.DublicateEmail, new string[] { "Email" }));
+
+                HandleValidationResults(validationName);
+            
+            }
+
+            else if (c.HasFlag(ErrorList.Succes))
+
+            {
+                errors.Remove("User");
+                OnErrorsChanged("User");
+
+                errors.Remove("Email");
+                OnErrorsChanged("Email");
+
+                
+                MessageBox.Show("Пользователь успешно создан");
+
+               
+
+            }
+          
         }
 
         private bool CanExecuteMyCommand()
@@ -308,19 +462,11 @@ namespace MyPress.Client.ViewModel
                     }
 
 
-
-                    User = item.User;
-                    Password = item.Pass;
-                    Email = item.Email;
-                    RepPassword = item.RepPass;
-
-
-
-
-
                 });
-        
-        
+
+
+
+            EnabButton = false;
         }
 
 
