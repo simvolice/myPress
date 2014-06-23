@@ -125,7 +125,6 @@
   </data>
   <data name="DublicateEmail" xml:space="preserve">
     <value>Этот почтовый ящик уже используется</value>
-    <comment> </comment>
   </data>
   <data name="DublicateName" xml:space="preserve">
     <value>Это имя пользователя уже используется</value>
@@ -193,7 +192,7 @@
     <value>Имя пользователя должно иметь длину от 4 до 255 символов</value>
   </data>
   <data name="ValidationErrorInvalidEmail" xml:space="preserve">
-    <value>Недопустимый адрес электронной почты. Он должен быть указан в формате пользователь@компания.ru</value>
+    <value>Недопустимый адрес электронной почты. Он должен быть указан в формате пользователь@компания.kz</value>
   </data>
   <data name="ValidationErrorInvalidUserName" xml:space="preserve">
     <value>Недопустимое имя пользователя. Оно должно содержать только алфавитно-цифровые символы</value>

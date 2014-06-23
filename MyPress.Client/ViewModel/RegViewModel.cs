@@ -36,8 +36,22 @@ namespace MyPress.Client.ViewModel
 
 
         private readonly IDataService _dataService;
-      List<ValidationResult> validationResults = new List<ValidationResult>();
-      List<ValidationResult> validationName = new List<ValidationResult>();
+
+
+      List<ValidationResult> validationResults = new List<ValidationResult>(); //Проверка пароля
+      
+        List<ValidationResult> validationName = new List<ValidationResult>(); //Дубликаты
+
+
+      List<ValidationResult> validationUser = new List<ValidationResult>(); //Проверка на null
+
+      List<ValidationResult> validationEmail = new List<ValidationResult>();
+
+
+      List<ValidationResult> validationPass = new List<ValidationResult>();
+
+
+      List<ValidationResult> validationRepPass = new List<ValidationResult>();
 
         /// <summary>
         /// The <see cref="User" /> property's name.
@@ -53,7 +67,7 @@ namespace MyPress.Client.ViewModel
 
 
 
-        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
+       
         [Display(Order = 0, Name = "UserNameLabel", ResourceType = typeof(Resource1))]
         [RegularExpression("^[a-zA-Z0-9_]*$", ErrorMessageResourceName = "ValidationErrorInvalidUserName", ErrorMessageResourceType = typeof(Resource1))]
         [StringLength(255, MinimumLength = 4, ErrorMessageResourceName = "ValidationErrorBadUserNameLength", ErrorMessageResourceType = typeof(Resource1))]
@@ -77,12 +91,7 @@ namespace MyPress.Client.ViewModel
                 RaisePropertyChanged(UserPropertyName);
 
 
-
-                if (string.IsNullOrWhiteSpace(_myUser) || string.IsNullOrWhiteSpace(_myEmail) || string.IsNullOrWhiteSpace(_myPassword) || string.IsNullOrWhiteSpace(_myRepPassword))
-                    EnabButton = false;
-                else
-
-                    EnabButton = true;
+              
 
             }
         }
@@ -99,7 +108,7 @@ namespace MyPress.Client.ViewModel
         /// Sets and gets the Password property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
+       
         [Display(Order = 2, Name = "PasswordLabel", Description = "PasswordDescription", ResourceType = typeof(Resource1))]
         [RegularExpression("^.*[^a-zA-Z0-9].*$", ErrorMessageResourceName = "ValidationErrorBadPasswordStrength", ErrorMessageResourceType = typeof(Resource1))]
         [StringLength(50, MinimumLength = 7, ErrorMessageResourceName = "ValidationErrorBadPasswordLength", ErrorMessageResourceType = typeof(Resource1))]
@@ -123,13 +132,7 @@ namespace MyPress.Client.ViewModel
              
                 RaisePropertyChanged(PasswordPropertyName);
 
-
-
-                if (string.IsNullOrWhiteSpace(_myUser) || string.IsNullOrWhiteSpace(_myEmail) || string.IsNullOrWhiteSpace(_myPassword) || string.IsNullOrWhiteSpace(_myRepPassword))
-                    EnabButton = false;
-                else
-
-                    EnabButton = true;
+               
 
             }
         }
@@ -150,7 +153,7 @@ namespace MyPress.Client.ViewModel
 
 
 
-        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
+    
         [Display(Order = 1, Name = "EmailLabel", ResourceType = typeof(Resource1))]
         [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
                            ErrorMessageResourceName = "ValidationErrorInvalidEmail", ErrorMessageResourceType = typeof(Resource1))]
@@ -173,13 +176,8 @@ namespace MyPress.Client.ViewModel
                 ValidateProperty(value);
                 RaisePropertyChanged(EmailPropertyName);
 
+              
 
-
-                if (string.IsNullOrWhiteSpace(_myUser) || string.IsNullOrWhiteSpace(_myEmail) || string.IsNullOrWhiteSpace(_myPassword) || string.IsNullOrWhiteSpace(_myRepPassword))
-                    EnabButton = false;
-                else
-
-                    EnabButton = true;
 
             }
         }
@@ -197,7 +195,7 @@ namespace MyPress.Client.ViewModel
         /// Sets and gets the RepPassword property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
+      
         [Display(Order = 3, Name = "PasswordConfirmationLabel", ResourceType = typeof(Resource1))]
         public string RepPassword
         {
@@ -210,6 +208,7 @@ namespace MyPress.Client.ViewModel
             {
                 if (_myRepPassword == value)
                 {
+
                     return;
                 }
 
@@ -219,76 +218,32 @@ namespace MyPress.Client.ViewModel
                 CheckPasswordConfirmation();
                 RaisePropertyChanged(RepPasswordPropertyName);
 
-
-                if (string.IsNullOrWhiteSpace(_myUser) || string.IsNullOrWhiteSpace(_myEmail) || string.IsNullOrWhiteSpace(_myPassword) || string.IsNullOrWhiteSpace(_myRepPassword))
-                    EnabButton = false;
-                else
-
-                    EnabButton = true;
-
+ 
+               
 
 
 
             }
         }
 
-        /// <summary>
-        /// The <see cref="EnabButton" /> property's name.
-        /// </summary>
-        public const string EnabButtonPropertyName = "EnabButton";
-
-        private bool _myButton = false;
-
-        /// <summary>
-        /// Sets and gets the EnabButton property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public bool EnabButton
-        {
-            get
-            {
-                return _myButton;
-            }
-
-            set
-            {
-                if (_myButton == value)
-                {
-                    return;
-                }
-
-                RaisePropertyChanging(EnabButtonPropertyName);
-                _myButton = value;
-                RaisePropertyChanged(EnabButtonPropertyName);
-            }
-        }
+       
 
 
 
         private void CheckPasswordConfirmation()
         {
-            // Если пароль или подтверждение не введены, эти поля на равенство не проверяются.
-            // Атрибут Required обеспечивает ввод значений в обоих полях.
-            if (string.IsNullOrWhiteSpace(this.Password)
-                || string.IsNullOrWhiteSpace(this.RepPassword))
-            {
-                return;
-            }
-
+           
             // Если значения различаются, добавляется ошибка проверки, связанная с обоими указанными элементами.
             if (this.Password != this.RepPassword)
             {
 
-
                
-                    EnabButton = false;
 
+                validationResults.Add(new ValidationResult(Resource1.ValidationErrorPasswordConfirmationMismatch, new string[] { "RepPassword" }));
+                
                 if (errors.ContainsKey("RepPassword"))
                     errors.Remove("RepPassword");
                 OnErrorsChanged("RepPassword");
-
-
-                validationResults.Add(new ValidationResult(Resource1.ValidationErrorPasswordConfirmationMismatch, new string[] { "RepPassword" }));
 
                 HandleValidationResults(validationResults);
 
@@ -325,20 +280,107 @@ namespace MyPress.Client.ViewModel
 
 
 
-            serviceData.Login = User;
-            serviceData.Email = Email;
-            serviceData.Pass = RepPassword;
+            if ( string.IsNullOrWhiteSpace(User) )
 
+            {
+  
 
-            var func = Observable.FromEventPattern<AddUserCompletedEventArgs>(myPressService, "AddUserCompleted")
-               .ObserveOnDispatcher();
-            myPressService.AddUserAsync(serviceData);
-            func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
-
+                validationResults.Add(new ValidationResult(Resource1.ValidationErrorRequiredField,
+                    new string[] {"User"}));
 
 
 
+                if (errors.ContainsKey("User"))
+                    errors.Remove("User");
+                OnErrorsChanged("User");
+
+                HandleValidationResults(validationResults);
+              
+            }
           
+            
+            
+            else if (string.IsNullOrWhiteSpace(Email))
+            {
+
+               
+
+
+                validationResults.Add(new ValidationResult(Resource1.ValidationErrorRequiredField,
+                       new string[] { "Email" }));
+
+
+
+
+                if (errors.ContainsKey("Email"))
+                    errors.Remove("Email");
+                OnErrorsChanged("Email");
+                HandleValidationResults(validationResults);
+
+            }
+
+
+            else if (string.IsNullOrWhiteSpace(Password))
+            {
+
+              
+
+
+                validationResults.Add(new ValidationResult(Resource1.ValidationErrorRequiredField,
+                       new string[] { "Password" }));
+
+
+
+                if (errors.ContainsKey("Password"))
+                    errors.Remove("Password");
+                OnErrorsChanged("Password");
+
+                HandleValidationResults(validationResults);
+
+
+
+
+            }
+
+
+
+            else if (string.IsNullOrWhiteSpace(RepPassword))
+            {
+
+                validationResults.Add(new ValidationResult(Resource1.ValidationErrorRequiredField,
+                       new string[] { "RepPassword" }));
+
+
+
+                if (errors.ContainsKey("RepPassword"))
+                    errors.Remove("RepPassword");
+                OnErrorsChanged("RepPassword");
+
+                HandleValidationResults(validationResults);
+
+                
+            }
+
+            else
+            {
+
+
+
+                serviceData.Login = User;
+                serviceData.Email = Email;
+                serviceData.Pass = RepPassword;
+
+
+                var func = Observable.FromEventPattern<AddUserCompletedEventArgs>(myPressService, "AddUserCompleted")
+                    .ObserveOnDispatcher();
+                myPressService.AddUserAsync(serviceData);
+                func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
+
+
+
+            }
+
+
 
 
         }
@@ -462,11 +504,21 @@ namespace MyPress.Client.ViewModel
                     }
 
 
+
+                    User = item.Login;
+                    Email = item.Email;
+                    Password = item.Pass;
+                    RepPassword = item.RepPass;
+
+
+
+
                 });
 
+         
+       
 
 
-            EnabButton = false;
         }
 
 
