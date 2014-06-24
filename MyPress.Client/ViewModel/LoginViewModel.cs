@@ -40,10 +40,53 @@ namespace MyPress.Client.ViewModel
         {
 
 
-            Uri uri = new Uri("/MainPages", UriKind.Relative);
+
+            if (string.IsNullOrWhiteSpace(User))
+            {
+            
+            
+
+                  ValidateCustomError("User",Resource1.ValidationErrorRequiredField);
+
+            
+            }
+
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+
+
+
+                ValidateCustomError("Password", Resource1.ValidationErrorRequiredField);
+
+
+            }
+
+            if (!HasErrors)
+            {
+            
+
+
+
+
+
+
+              Uri uri = new Uri("/MainPages", UriKind.Relative);
             Messenger.Default.Send<Uri>(uri, "Navigate"); 
+            
+            }
+
+
+
+          
 
            
+
+
+
+
+
+
 
         }
 
@@ -87,36 +130,7 @@ namespace MyPress.Client.ViewModel
 
 
 
-           /// <summary>
-           /// The <see cref="EnableButtonEnter" /> property's name.
-           /// </summary>
-           public const string EnableButtonEnterPropertyName = "EnableButtonEnter";
-
-           private bool _enableButtonEnter = false;
-
-           /// <summary>
-           /// Sets and gets the EnableButtonEnter property.
-           /// Changes to that property's value raise the PropertyChanged event. 
-           /// </summary>
-           public bool EnableButtonEnter
-           {
-               get
-               {
-                   return _enableButtonEnter;
-               }
-
-               set
-               {
-                   if (_enableButtonEnter == value)
-                   {
-                       return;
-                   }
-
-                   RaisePropertyChanging(EnableButtonEnterPropertyName);
-                   _enableButtonEnter = value;
-                   RaisePropertyChanged(EnableButtonEnterPropertyName);
-               }
-           }
+         
 
 
            /// <summary>
@@ -178,12 +192,7 @@ namespace MyPress.Client.ViewModel
                     RaisePropertyChanged(PassProp);
 
 
-                    if (string.IsNullOrWhiteSpace(_password) || string.IsNullOrWhiteSpace(_user))
-                        EnableButtonEnter = false;
-                    else
-
-                        EnableButtonEnter = true;
-
+                  
 
 
             }
@@ -216,9 +225,6 @@ namespace MyPress.Client.ViewModel
                 {
 
 
-                   
-
-
                     return;
 
                 }
@@ -231,12 +237,7 @@ namespace MyPress.Client.ViewModel
                 RaisePropertyChanged(UserProp);
 
 
-                if (string.IsNullOrWhiteSpace(_user) || string.IsNullOrWhiteSpace(_password))
-                    EnableButtonEnter = false;
-                else
-             
-                EnableButtonEnter = true;
-
+           
 
 
             }  
@@ -269,15 +270,6 @@ namespace MyPress.Client.ViewModel
 
 
                     }
-
-
-
-                    User = item.Login;
-                    Password = item.Pass;
-
-                    EnableButtonEnter = false;
-
-
 
                 });
         
@@ -339,6 +331,28 @@ namespace MyPress.Client.ViewModel
 
                 HandleValidationResults(validationResults);
             }
+        }
+
+
+
+        public void ValidateCustomError(string property, string resourceString)
+        {
+
+            List<ValidationResult> validationResults = new List<ValidationResult>();
+
+            validationResults.Add(new ValidationResult(resourceString,
+                 new string[] { property }));
+
+
+
+            //clear previous errors from tested property
+            if (errors.ContainsKey(property))
+                errors.Remove(property);
+            OnErrorsChanged(property);
+
+            HandleValidationResults(validationResults);
+
+
         }
 
         public void Validate()

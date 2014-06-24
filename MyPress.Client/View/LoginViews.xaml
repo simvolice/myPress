@@ -407,7 +407,7 @@
 
 
             <TextBlock x:Name="Pass" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Resource1.PasswordLabel, Source={StaticResource StResource1}}" VerticalAlignment="Top" Margin="222.833,276.317,0,0" Foreground="#FF514243" FontSize="9.333"/>
-            <Button  Command="{Binding Path=EnteRelayCommand}" Style="{StaticResource ButtonStyle7}" x:Name="Enter" IsEnabled="{Binding EnableButtonEnter}" Content="{Binding Resource1.ButtEnter, Source={StaticResource StResource1}}" Margin="268.162,307.204,250.838,85.595" RenderTransformOrigin="0.5,0.5" FontSize="13.333"/>
+            <Button  Command="{Binding Path=EnteRelayCommand}" Style="{StaticResource ButtonStyle7}" x:Name="Enter"  Content="{Binding Resource1.ButtEnter, Source={StaticResource StResource1}}" Margin="268.162,307.204,250.838,85.595" RenderTransformOrigin="0.5,0.5" FontSize="13.333"/>
             <PasswordBox HorizontalAlignment="Left" Margin="280,274,0,0" VerticalAlignment="Top" Width="135" Height="16" x:Name="PasswordLabel" Password="{Binding Password, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" IsTabStop="True"/>
         </Grid>
     </Grid>

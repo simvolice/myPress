@@ -25,15 +25,13 @@
   </xs:element>
   <xs:element name="AddUserResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MyPress.Web" minOccurs="0" name="AddUserResult" type="q3:ErrorList" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="EnterUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MyPress.Web" minOccurs="0" name="data" nillable="true" type="q4:Data" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MyPress.Web" minOccurs="0" name="data" nillable="true" type="q3:Data" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -50,6 +48,20 @@
   <xs:element name="RestorePassResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MyPress.Web" minOccurs="0" name="data" nillable="true" type="q4:Data" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MyPress.Web" minOccurs="0" name="CheckUserResult" type="q5:ErrorList" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

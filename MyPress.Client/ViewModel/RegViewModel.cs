@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MyPress.Client.Model;
 using MyPress.Client.Resources;
 using MyPress.Client.ServiceMyPress;
@@ -28,30 +30,18 @@ namespace MyPress.Client.ViewModel
 
 
 
-        
+
 
         ServiceMyPress.MyPressServiceClient myPressService = new MyPressServiceClient();
-        ServiceMyPress.Data  serviceData = new Data();
+        ServiceMyPress.Data serviceData = new Data();
 
 
 
         private readonly IDataService _dataService;
 
 
-      List<ValidationResult> validationResults = new List<ValidationResult>(); //Проверка пароля
-      
-        List<ValidationResult> validationName = new List<ValidationResult>(); //Дубликаты
 
 
-      List<ValidationResult> validationUser = new List<ValidationResult>(); //Проверка на null
-
-      List<ValidationResult> validationEmail = new List<ValidationResult>();
-
-
-      List<ValidationResult> validationPass = new List<ValidationResult>();
-
-
-      List<ValidationResult> validationRepPass = new List<ValidationResult>();
 
         /// <summary>
         /// The <see cref="User" /> property's name.
@@ -67,7 +57,7 @@ namespace MyPress.Client.ViewModel
 
 
 
-       
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
         [Display(Order = 0, Name = "UserNameLabel", ResourceType = typeof(Resource1))]
         [RegularExpression("^[a-zA-Z0-9_]*$", ErrorMessageResourceName = "ValidationErrorInvalidUserName", ErrorMessageResourceType = typeof(Resource1))]
         [StringLength(255, MinimumLength = 4, ErrorMessageResourceName = "ValidationErrorBadUserNameLength", ErrorMessageResourceType = typeof(Resource1))]
@@ -91,7 +81,7 @@ namespace MyPress.Client.ViewModel
                 RaisePropertyChanged(UserPropertyName);
 
 
-              
+
 
             }
         }
@@ -108,7 +98,7 @@ namespace MyPress.Client.ViewModel
         /// Sets and gets the Password property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-       
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
         [Display(Order = 2, Name = "PasswordLabel", Description = "PasswordDescription", ResourceType = typeof(Resource1))]
         [RegularExpression("^.*[^a-zA-Z0-9].*$", ErrorMessageResourceName = "ValidationErrorBadPasswordStrength", ErrorMessageResourceType = typeof(Resource1))]
         [StringLength(50, MinimumLength = 7, ErrorMessageResourceName = "ValidationErrorBadPasswordLength", ErrorMessageResourceType = typeof(Resource1))]
@@ -126,13 +116,13 @@ namespace MyPress.Client.ViewModel
                     return;
                 }
 
-                
+
                 _myPassword = value;
                 ValidateProperty(value);
-             
+
                 RaisePropertyChanged(PasswordPropertyName);
 
-               
+
 
             }
         }
@@ -153,7 +143,7 @@ namespace MyPress.Client.ViewModel
 
 
 
-    
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
         [Display(Order = 1, Name = "EmailLabel", ResourceType = typeof(Resource1))]
         [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
                            ErrorMessageResourceName = "ValidationErrorInvalidEmail", ErrorMessageResourceType = typeof(Resource1))]
@@ -176,7 +166,7 @@ namespace MyPress.Client.ViewModel
                 ValidateProperty(value);
                 RaisePropertyChanged(EmailPropertyName);
 
-              
+
 
 
             }
@@ -195,7 +185,7 @@ namespace MyPress.Client.ViewModel
         /// Sets and gets the RepPassword property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-      
+        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
         [Display(Order = 3, Name = "PasswordConfirmationLabel", ResourceType = typeof(Resource1))]
         public string RepPassword
         {
@@ -218,34 +208,33 @@ namespace MyPress.Client.ViewModel
                 CheckPasswordConfirmation();
                 RaisePropertyChanged(RepPasswordPropertyName);
 
- 
-               
+
+
 
 
 
             }
         }
 
-       
+
 
 
 
         private void CheckPasswordConfirmation()
         {
-           
+
+            if (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepPassword))
+            {
+
+                return;
+
+            }
+
             // Если значения различаются, добавляется ошибка проверки, связанная с обоими указанными элементами.
             if (this.Password != this.RepPassword)
             {
 
-               
-
-                validationResults.Add(new ValidationResult(Resource1.ValidationErrorPasswordConfirmationMismatch, new string[] { "RepPassword" }));
-                
-                if (errors.ContainsKey("RepPassword"))
-                    errors.Remove("RepPassword");
-                OnErrorsChanged("RepPassword");
-
-                HandleValidationResults(validationResults);
+                ValidateCustomError("RepPassword", Resource1.ValidationErrorPasswordConfirmationMismatch);
 
             }
         }
@@ -269,9 +258,9 @@ namespace MyPress.Client.ViewModel
 
 
 
-        
-      
-    
+       
+
+
 
 
         private void ExecuteMyCommand()
@@ -280,90 +269,93 @@ namespace MyPress.Client.ViewModel
 
 
 
-            if ( string.IsNullOrWhiteSpace(User) )
-
-            {
-  
-
-                validationResults.Add(new ValidationResult(Resource1.ValidationErrorRequiredField,
-                    new string[] {"User"}));
-
-
-
-                if (errors.ContainsKey("User"))
-                    errors.Remove("User");
-                OnErrorsChanged("User");
-
-                HandleValidationResults(validationResults);
-              
-            }
-          
-            
-            
-            else if (string.IsNullOrWhiteSpace(Email))
+            if (string.IsNullOrWhiteSpace(User))
             {
 
-               
 
-
-                validationResults.Add(new ValidationResult(Resource1.ValidationErrorRequiredField,
-                       new string[] { "Email" }));
-
-
-
-
-                if (errors.ContainsKey("Email"))
-                    errors.Remove("Email");
-                OnErrorsChanged("Email");
-                HandleValidationResults(validationResults);
-
-            }
-
-
-            else if (string.IsNullOrWhiteSpace(Password))
-            {
-
-              
-
-
-                validationResults.Add(new ValidationResult(Resource1.ValidationErrorRequiredField,
-                       new string[] { "Password" }));
-
-
-
-                if (errors.ContainsKey("Password"))
-                    errors.Remove("Password");
-                OnErrorsChanged("Password");
-
-                HandleValidationResults(validationResults);
-
+                ValidateCustomError("User", Resource1.ValidationErrorRequiredField);
 
 
 
             }
 
 
-
-            else if (string.IsNullOrWhiteSpace(RepPassword))
+            if (!Regex.IsMatch(User, "^[a-zA-Z0-9_]*$"))
             {
 
-                validationResults.Add(new ValidationResult(Resource1.ValidationErrorRequiredField,
-                       new string[] { "RepPassword" }));
-
-
-
-                if (errors.ContainsKey("RepPassword"))
-                    errors.Remove("RepPassword");
-                OnErrorsChanged("RepPassword");
-
-                HandleValidationResults(validationResults);
-
-                
+                ValidateCustomError("User", Resource1.ValidationErrorInvalidUserName);
             }
 
-            else
+
+
+            if ((User.Length >= 1 && User.Length < 4) || User.Length > 255)
             {
 
+                ValidateCustomError("User", Resource1.ValidationErrorBadUserNameLength);
+            }
+
+
+
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+
+                ValidateCustomError("Email", Resource1.ValidationErrorRequiredField);
+
+
+            }
+
+
+            if (!Regex.IsMatch(Email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+            {
+
+                ValidateCustomError("Email", Resource1.ValidationErrorInvalidEmail);
+
+
+            }
+
+
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+
+                ValidateCustomError("Password", Resource1.ValidationErrorRequiredField);
+
+            }
+
+
+            if (!Regex.IsMatch(Password, "^.*[^a-zA-Z0-9].*$"))
+            {
+
+                ValidateCustomError("Password", Resource1.ValidationErrorBadPasswordStrength);
+            }
+
+            if ((Password.Length >= 1 && Password.Length < 7) || Password.Length > 50)
+            {
+
+                ValidateCustomError("Password", Resource1.ValidationErrorBadPasswordLength);
+            }
+
+            if (string.IsNullOrWhiteSpace(RepPassword))
+            {
+
+
+
+                ValidateCustomError("RepPassword", Resource1.ValidationErrorRequiredField);
+
+            }
+
+            if (Password != RepPassword)
+            {
+
+
+
+                ValidateCustomError("RepPassword", Resource1.ValidationErrorPasswordConfirmationMismatch);
+
+            }
+
+
+
+            if (!HasErrors)
+            {
 
 
                 serviceData.Login = User;
@@ -371,122 +363,76 @@ namespace MyPress.Client.ViewModel
                 serviceData.Pass = RepPassword;
 
 
-                var func = Observable.FromEventPattern<AddUserCompletedEventArgs>(myPressService, "AddUserCompleted")
+                var func = Observable.FromEventPattern<CheckUserCompletedEventArgs>(myPressService, "CheckUserCompleted")
                     .ObserveOnDispatcher();
-                myPressService.AddUserAsync(serviceData);
+                myPressService.CheckUserAsync(serviceData);
                 func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
 
-
-
             }
-
-
-
-
         }
 
-      
 
-     
-      
+
+
+
 
         private void CheckEr(ErrorList c)
         {
 
-          
 
-            if (c.HasFlag(ErrorList.DublicateName))
+
+            if (c.Equals(ErrorList.DublicateName))
             {
 
-
-                errors.Remove("User");
-                OnErrorsChanged("User");
-
-                errors.Remove("Email");
-                OnErrorsChanged("Email");
-
-                validationName.Add(new ValidationResult(Resource1.DublicateName, new string[] { "User" }));
-
-                HandleValidationResults(validationName);
-
+                ValidateCustomError("User", Resource1.DublicateName);
 
             }
 
 
-            else if (c.HasFlag(ErrorList.DublicateEmail))
+            if (c.Equals(ErrorList.DublicateEmail))
             {
 
-                errors.Remove("User");
-                OnErrorsChanged("User");
 
-                errors.Remove("Email");
-                OnErrorsChanged("Email");
+                ValidateCustomError("Email", Resource1.DublicateEmail);
 
-                validationName.Add(new ValidationResult(Resource1.DublicateEmail, new string[] { "Email" }));
-
-                HandleValidationResults(validationName);
-            
             }
 
-            else if (c.HasFlag(ErrorList.Succes))
-
+            if (c.Equals(ErrorList.Succes))
             {
-                errors.Remove("User");
-                OnErrorsChanged("User");
 
-                errors.Remove("Email");
-                OnErrorsChanged("Email");
 
-                
-                MessageBox.Show("Пользователь успешно создан");
+                serviceData.Login = User;
+                serviceData.Email = Email;
+                serviceData.Pass = RepPassword;
 
-               
+
+               myPressService.AddUserAsync(serviceData);
+
+
+
+
+               Messenger.Default.Send<string>("true");
+
+
 
             }
-          
+
         }
 
         private bool CanExecuteMyCommand()
         {
+            
             return true;
         }
 
-        private RelayCommand _cancelCommand;
-
-        /// <summary>
-        /// Gets the MyCommand.
-        /// </summary>
-        public RelayCommand CancelCommand
-        {
-            get
-            {
-                return _cancelCommand ?? (_cancelCommand = new RelayCommand(
-                    ExecuteCancelCommand,
-                    CanExecuteCancelCommand));
-            }
-        }
-
-        private void ExecuteCancelCommand()
-        {
-
-
-
-          
-
-
-        }
-
-        private bool CanExecuteCancelCommand()
-        {
-            return true;
-        }
+      
 
 
 
 
 
-        
-        
+
+
         public RegViewModel(IDataService dataService)
         {
 
@@ -505,18 +451,10 @@ namespace MyPress.Client.ViewModel
 
 
 
-                    User = item.Login;
-                    Email = item.Email;
-                    Password = item.Pass;
-                    RepPassword = item.RepPass;
-
-
-
-
                 });
 
-         
-       
+
+
 
 
         }
@@ -574,6 +512,31 @@ namespace MyPress.Client.ViewModel
             }
         }
 
+
+
+        public void ValidateCustomError(string property, string resourceString)
+        {
+
+            List<ValidationResult> validationResults = new List<ValidationResult>();
+
+            validationResults.Add(new ValidationResult(resourceString,
+                 new string[] { property }));
+
+
+
+            //clear previous errors from tested property
+            if (errors.ContainsKey(property))
+                errors.Remove(property);
+            OnErrorsChanged(property);
+
+            HandleValidationResults(validationResults);
+
+
+        }
+
+
+
+
         public void Validate()
         {
             lock (threadLock)
@@ -607,19 +570,19 @@ namespace MyPress.Client.ViewModel
                 OnErrorsChanged(prop.Key);
             }
         }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

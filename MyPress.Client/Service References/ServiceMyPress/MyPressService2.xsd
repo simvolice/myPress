@@ -6,7 +6,6 @@
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Pass" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="RepPass" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Data" nillable="true" type="tns:Data" />

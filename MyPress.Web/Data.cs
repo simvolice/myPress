@@ -20,8 +20,7 @@ namespace MyPress.Web
         [DataMember]
        public string Pass { get; set; }
 
-        [DataMember]
-        public string RepPass { get; set; }
+      
      
 
        [DataMember]
@@ -35,8 +34,7 @@ namespace MyPress.Web
         public Data(DataPersistance dataPersistance)
         {
 
-
-            this.RepPass = dataPersistance.RepPass;
+  
             this.Login = dataPersistance.Login;
             this.Pass = dataPersistance.Pass;
             this.Email = dataPersistance.Email;
@@ -55,7 +53,7 @@ namespace MyPress.Web
 
             DataPersistance dataPersistance = new DataPersistance();
 
-            dataPersistance.RepPass = this.RepPass;
+           
             dataPersistance.Bing = this.Bing;
             dataPersistance.Email = this.Email;
             dataPersistance.Pass = this.Pass;
