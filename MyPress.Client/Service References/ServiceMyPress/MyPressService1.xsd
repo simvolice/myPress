@@ -64,4 +64,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="CheckUserLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MyPress.Web" minOccurs="0" name="data" nillable="true" type="q6:Data" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckUserLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/MyPress.Web" minOccurs="0" name="CheckUserLoginResult" type="q7:ErrorList" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

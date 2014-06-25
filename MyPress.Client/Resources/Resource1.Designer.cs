@@ -106,6 +106,15 @@ namespace MyPress.Client.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Неправильное имя пользователя или пароль,попробуйте воспользоваться функцией восстановления пароля.
+        /// </summary>
+        public static string FailedPassword {
+            get {
+                return ResourceManager.GetString("FailedPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Каким образом ваше имя должно отображаться в приложении.
         /// </summary>
         public static string FriendlyNameDescription {

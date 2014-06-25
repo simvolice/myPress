@@ -14,9 +14,9 @@ namespace MyPress.Web
         DublicateName = 1,
         DublicateEmail = 2,
        SuccesPassword = 3,
-       SuccesLogin = 4,
-       FailedName = 5,
-       FailedPass = 6
+      
+       FailedPass = 4,
+       EmailNull = 5
     
     }
 }

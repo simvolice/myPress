@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using GalaSoft.MvvmLight;
 using MyPress.Client.Model;
 using MyPress.Client.Resources;
+using MyPress.Client.ServiceMyPress;
 
 namespace MyPress.Client.ViewModel
 {
@@ -20,41 +21,13 @@ namespace MyPress.Client.ViewModel
     public class RestorePassViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         private readonly IDataService _dataService;
+        ServiceMyPress.MyPressServiceClient myServiceClient = new MyPressServiceClient();
+        ServiceMyPress.Data myData = new Data();
+        private IDisposable disposableRestore;
 
 
 
-
-
-        /// <summary>
-        /// The <see cref="EnableButton" /> property's name.
-        /// </summary>
-        public const string EnableButtonPropertyName = "EnableButton";
-
-        private bool _enableButton = false;
-
-        /// <summary>
-        /// Sets and gets the EnableButton property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
-        public bool EnableButton
-        {
-            get
-            {
-                return _enableButton;
-            }
-
-            set
-            {
-                if (_enableButton == value)
-                {
-                    return;
-                }
-
-                RaisePropertyChanging(EnableButtonPropertyName);
-                _enableButton = value;
-                RaisePropertyChanged(EnableButtonPropertyName);
-            }
-        }
+       
 
 
         /// <summary>
@@ -134,9 +107,6 @@ namespace MyPress.Client.ViewModel
 
 
 
-                    Email = item.Email;
-
-                    EnableButton = false;
 
                 });
         

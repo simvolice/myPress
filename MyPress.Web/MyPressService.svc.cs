@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Security.Cryptography;
-using System.ServiceModel;
-using System.Text;
-using MongoDB.Bson;
-using MongoRepository;
-using Newtonsoft.Json;
+﻿using MongoRepository;
+using Limilabs.Mail;
+
 
 namespace MyPress.Web
 {
@@ -47,45 +39,19 @@ namespace MyPress.Web
 
 
             MongoRepository<DataPersistance> repository = new MongoRepository<DataPersistance>();
-            var ResLogin = repository.Where(x => x.Login == data.Login).SingleOrDefault();
+         
 
            
-            if (repository.Exists(x => x.Login == data.Login))
-            {
+            if (repository.Exists(x => x.Login == data.Login) && repository.Exists(x=> x.Pass == data.Pass))
+          
+                return ErrorList.SuccesPassword;
 
-              
-
-                return ErrorList.SuccesLogin;
-
-               
-
-            }
 
            
-
-
-            if (ResLogin.Pass == data.Pass)
-            {
-            
-            return ErrorList.SuccesPassword;
-            
-            
-            }
-
-            return ErrorList.FailedPass;
-
+return ErrorList.FailedPass;
 
 
         }
-
-
-
-
-
-
-
-
-
 
 
         public void AddUser(Data data)
@@ -120,30 +86,35 @@ namespace MyPress.Web
 
 
 
-
-
-
-        public void EnterUser(Data data)
+        public ErrorList RestorePass(Data data)
         {
-
             MongoRepository<DataPersistance> repository = new MongoRepository<DataPersistance>();
 
+            if (repository.Exists(x => x.Email == data.Email))
+            {
+            
+
+               
+
+                //Подключить mail настроить с шаблоном geometric
+
+
+
+
+            
+               return ErrorList.Succes;
+            }
+
+
+
+
+            
+            return ErrorList.EmailNull;
 
 
 
 
 
-
-
-
-        }
-
-
-
-      
-        public void RestorePass()
-        {
-            throw new NotImplementedException();
         }
 
 

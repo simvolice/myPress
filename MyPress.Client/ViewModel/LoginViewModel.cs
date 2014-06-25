@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPress.Client.Model;
 using MyPress.Client.Resources;
+using MyPress.Client.ServiceMyPress;
 using MyPress.Client.View;
 
 namespace MyPress.Client.ViewModel
@@ -18,7 +21,9 @@ namespace MyPress.Client.ViewModel
     public class LoginViewModel : ViewModelBase, INotifyDataErrorInfo
     {
 
-
+        private IDisposable disposableCheckLogin;
+        ServiceMyPress.MyPressServiceClient myService = new MyPressServiceClient();
+        ServiceMyPress.Data myData = new Data();
 
 
         private RelayCommand enterCommand;
@@ -64,15 +69,20 @@ namespace MyPress.Client.ViewModel
 
             if (!HasErrors)
             {
-            
+
+
+                myData.Login = User;
+                myData.Pass = Password;
+
+                var func = Observable.FromEventPattern<CheckUserLoginCompletedEventArgs>(myService, "CheckUserLoginCompleted")
+                  .ObserveOnDispatcher();
+                myService.CheckUserLoginAsync(myData);
+              disposableCheckLogin =  func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
 
 
 
 
-
-
-              Uri uri = new Uri("/MainPages", UriKind.Relative);
-            Messenger.Default.Send<Uri>(uri, "Navigate"); 
+           
             
             }
 
@@ -84,6 +94,27 @@ namespace MyPress.Client.ViewModel
 
 
 
+
+
+
+
+        }
+
+        private void CheckEr(ErrorList c)
+        {
+          
+            
+            disposableCheckLogin.Dispose();
+
+ Uri uri = new Uri("/MainPages", UriKind.Relative);
+
+
+            if (c.Equals(ErrorList.FailedPass))
+              ValidateCustomError("Password",Resource1.FailedPassword);
+            if (c.Equals(ErrorList.SuccesPassword))
+            Messenger.Default.Send<Uri>(uri, "Navigate"); 
+
+         
 
 
 

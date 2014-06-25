@@ -132,6 +132,9 @@
   <data name="EmailLabel" xml:space="preserve">
     <value>Электронная почта</value>
   </data>
+  <data name="FailedPassword" xml:space="preserve">
+    <value>Неправильное имя пользователя или пароль,попробуйте воспользоваться функцией восстановления пароля</value>
+  </data>
   <data name="FriendlyNameDescription" xml:space="preserve">
     <value>Каким образом ваше имя должно отображаться в приложении</value>
   </data>

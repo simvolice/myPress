@@ -19,11 +19,7 @@ namespace MyPress.Web
 
 
         [OperationContract]
-        void EnterUser(Data data);
-
-
-        [OperationContract]
-        void RestorePass();
+        ErrorList RestorePass(Data data);
 
         [OperationContract]
         ErrorList CheckUser(Data data);

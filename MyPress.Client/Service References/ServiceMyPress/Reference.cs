@@ -177,6 +177,12 @@ namespace MyPress.Client.ServiceMyPress {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         DublicateEmail = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        SuccesPassword = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FailedPass = 4,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -207,6 +213,11 @@ namespace MyPress.Client.ServiceMyPress {
         System.IAsyncResult BeginCheckUser(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState);
         
         MyPress.Client.ServiceMyPress.ErrorList EndCheckUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/CheckUserLogin", ReplyAction="http://tempuri.org/IMyPressService/CheckUserLoginResponse")]
+        System.IAsyncResult BeginCheckUserLogin(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState);
+        
+        MyPress.Client.ServiceMyPress.ErrorList EndCheckUserLogin(System.IAsyncResult result);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -220,6 +231,25 @@ namespace MyPress.Client.ServiceMyPress {
         private object[] results;
         
         public CheckUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MyPress.Client.ServiceMyPress.ErrorList Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MyPress.Client.ServiceMyPress.ErrorList)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class CheckUserLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public CheckUserLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -265,6 +295,12 @@ namespace MyPress.Client.ServiceMyPress {
         private EndOperationDelegate onEndCheckUserDelegate;
         
         private System.Threading.SendOrPostCallback onCheckUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginCheckUserLoginDelegate;
+        
+        private EndOperationDelegate onEndCheckUserLoginDelegate;
+        
+        private System.Threading.SendOrPostCallback onCheckUserLoginCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -328,6 +364,8 @@ namespace MyPress.Client.ServiceMyPress {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RestorePassCompleted;
         
         public event System.EventHandler<CheckUserCompletedEventArgs> CheckUserCompleted;
+        
+        public event System.EventHandler<CheckUserLoginCompletedEventArgs> CheckUserLoginCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -563,6 +601,52 @@ namespace MyPress.Client.ServiceMyPress {
                         data}, this.onEndCheckUserDelegate, this.onCheckUserCompletedDelegate, userState);
         }
         
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginCheckUserLogin(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginCheckUserLogin(data, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        MyPress.Client.ServiceMyPress.ErrorList MyPress.Client.ServiceMyPress.IMyPressService.EndCheckUserLogin(System.IAsyncResult result) {
+            return base.Channel.EndCheckUserLogin(result);
+        }
+        
+        private System.IAsyncResult OnBeginCheckUserLogin(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MyPress.Client.ServiceMyPress.Data data = ((MyPress.Client.ServiceMyPress.Data)(inValues[0]));
+            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginCheckUserLogin(data, callback, asyncState);
+        }
+        
+        private object[] OnEndCheckUserLogin(System.IAsyncResult result) {
+            MyPress.Client.ServiceMyPress.ErrorList retVal = ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).EndCheckUserLogin(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnCheckUserLoginCompleted(object state) {
+            if ((this.CheckUserLoginCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.CheckUserLoginCompleted(this, new CheckUserLoginCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void CheckUserLoginAsync(MyPress.Client.ServiceMyPress.Data data) {
+            this.CheckUserLoginAsync(data, null);
+        }
+        
+        public void CheckUserLoginAsync(MyPress.Client.ServiceMyPress.Data data, object userState) {
+            if ((this.onBeginCheckUserLoginDelegate == null)) {
+                this.onBeginCheckUserLoginDelegate = new BeginOperationDelegate(this.OnBeginCheckUserLogin);
+            }
+            if ((this.onEndCheckUserLoginDelegate == null)) {
+                this.onEndCheckUserLoginDelegate = new EndOperationDelegate(this.OnEndCheckUserLogin);
+            }
+            if ((this.onCheckUserLoginCompletedDelegate == null)) {
+                this.onCheckUserLoginCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCheckUserLoginCompleted);
+            }
+            base.InvokeAsync(this.onBeginCheckUserLoginDelegate, new object[] {
+                        data}, this.onEndCheckUserLoginDelegate, this.onCheckUserLoginCompletedDelegate, userState);
+        }
+        
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
             return ((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(callback, asyncState);
         }
@@ -699,6 +783,19 @@ namespace MyPress.Client.ServiceMyPress {
             public MyPress.Client.ServiceMyPress.ErrorList EndCheckUser(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 MyPress.Client.ServiceMyPress.ErrorList _result = ((MyPress.Client.ServiceMyPress.ErrorList)(base.EndInvoke("CheckUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginCheckUserLogin(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = data;
+                System.IAsyncResult _result = base.BeginInvoke("CheckUserLogin", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public MyPress.Client.ServiceMyPress.ErrorList EndCheckUserLogin(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                MyPress.Client.ServiceMyPress.ErrorList _result = ((MyPress.Client.ServiceMyPress.ErrorList)(base.EndInvoke("CheckUserLogin", _args, result)));
                 return _result;
             }
         }

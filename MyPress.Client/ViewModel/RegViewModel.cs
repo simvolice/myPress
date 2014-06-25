@@ -31,7 +31,7 @@ namespace MyPress.Client.ViewModel
 
 
 
-
+        private IDisposable disposableReg;
         ServiceMyPress.MyPressServiceClient myPressService = new MyPressServiceClient();
         ServiceMyPress.Data serviceData = new Data();
 
@@ -267,7 +267,7 @@ namespace MyPress.Client.ViewModel
         {
 
 
-
+           
 
             if (string.IsNullOrWhiteSpace(User))
             {
@@ -379,7 +379,7 @@ namespace MyPress.Client.ViewModel
         private void CheckEr(ErrorList c)
         {
 
-
+            disposableReg.Dispose();
 
             if (c.Equals(ErrorList.DublicateName))
             {
