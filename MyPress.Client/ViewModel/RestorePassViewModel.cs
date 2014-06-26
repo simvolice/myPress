@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
+using System.ServiceModel.Channels;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MyPress.Client.Model;
 using MyPress.Client.Resources;
 using MyPress.Client.ServiceMyPress;
+using GalaSoft.MvvmLight.Messaging;
+
 
 namespace MyPress.Client.ViewModel
 {
@@ -43,11 +48,7 @@ namespace MyPress.Client.ViewModel
         /// </summary>
 
 
-        [Required(ErrorMessageResourceName = "ValidationErrorRequiredField", ErrorMessageResourceType = typeof(Resource1))]
-      
-        [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
-                           ErrorMessageResourceName = "ValidationErrorInvalidEmail", ErrorMessageResourceType = typeof(Resource1))]
-        
+       
         public string Email
         {
             get
@@ -68,10 +69,52 @@ namespace MyPress.Client.ViewModel
                 RaisePropertyChanged(EmailPropertyName);
 
 
-                if (HasErrors)
-                    EnableButton = false;
-                else EnableButton = true;
-               
+
+
+
+
+            }
+        }
+
+
+
+        private RelayCommand checkEmailCommand;
+
+        /// <summary>
+        /// Gets the MyCommand.
+        /// </summary>
+        public RelayCommand CheckCommand
+        {
+            get
+            {
+                return checkEmailCommand ?? (checkEmailCommand = new RelayCommand(
+                    ExecuteMyCommand,
+                    CanExecuteMyCommand));
+            }
+        }
+
+        private void ExecuteMyCommand()
+        {
+
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+            
+            ValidateCustomError("Email", Resource1.ValidationErrorRequiredField);
+            
+            
+            }
+
+
+            if (!HasErrors)
+            {
+
+
+                myData.Email = Email;
+
+                var func = Observable.FromEventPattern<RestorePassCompletedEventArgs>(myServiceClient, "RestorePassCompleted")
+                  .ObserveOnDispatcher();
+                myServiceClient.RestorePassAsync(myData);
+                disposableRestore = func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
 
 
 
@@ -79,7 +122,45 @@ namespace MyPress.Client.ViewModel
 
 
             }
+
+
+
         }
+
+        private void CheckEr(ErrorList c)
+        {
+            
+            disposableRestore.Dispose();
+
+            if (c.Equals(ErrorList.EmailNull))
+            {
+            
+            ValidateCustomError("Email",Resource1.EmailNull);
+            
+            
+            
+            }
+
+            if (c.Equals(ErrorList.Succes))
+            {
+
+
+                Messenger.Default.Send<bool>(true);
+
+            }
+
+
+
+
+
+        }
+
+        private bool CanExecuteMyCommand()
+        {
+            return true;
+        }
+
+
 
 
 
@@ -170,6 +251,29 @@ namespace MyPress.Client.ViewModel
 
                 HandleValidationResults(validationResults);
             }
+        }
+
+
+
+
+        public void ValidateCustomError(string property, string resourceString)
+        {
+
+            List<ValidationResult> validationResults = new List<ValidationResult>();
+
+            validationResults.Add(new ValidationResult(resourceString,
+                 new string[] { property }));
+
+
+
+            //clear previous errors from tested property
+            if (errors.ContainsKey(property))
+                errors.Remove(property);
+            OnErrorsChanged(property);
+
+            HandleValidationResults(validationResults);
+
+
         }
 
         public void Validate()

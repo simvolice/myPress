@@ -19,12 +19,6 @@
   <wsdl:message name="IMyPressService_AddUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddUserResponse" />
   </wsdl:message>
-  <wsdl:message name="IMyPressService_EnterUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:EnterUser" />
-  </wsdl:message>
-  <wsdl:message name="IMyPressService_EnterUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EnterUserResponse" />
-  </wsdl:message>
   <wsdl:message name="IMyPressService_RestorePass_InputMessage">
     <wsdl:part name="parameters" element="tns:RestorePass" />
   </wsdl:message>
@@ -52,10 +46,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IMyPressService/AddUser" message="tns:IMyPressService_AddUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMyPressService/AddUserResponse" message="tns:IMyPressService_AddUser_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="EnterUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IMyPressService/EnterUser" message="tns:IMyPressService_EnterUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IMyPressService/EnterUserResponse" message="tns:IMyPressService_EnterUser_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="RestorePass">
       <wsdl:input wsaw:Action="http://tempuri.org/IMyPressService/RestorePass" message="tns:IMyPressService_RestorePass_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMyPressService/RestorePassResponse" message="tns:IMyPressService_RestorePass_OutputMessage" />
@@ -82,15 +72,6 @@
     </wsdl:operation>
     <wsdl:operation name="AddUser">
       <soap:operation soapAction="http://tempuri.org/IMyPressService/AddUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EnterUser">
-      <soap:operation soapAction="http://tempuri.org/IMyPressService/EnterUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

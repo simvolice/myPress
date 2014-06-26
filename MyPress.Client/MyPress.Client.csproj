@@ -235,6 +235,7 @@
     <Resource Include="Image\Слой 5.png" />
     <Resource Include="Image\Слой 6.png" />
     <Resource Include="Image\Слой 7.png" />
+    <Content Include="clientaccesspolicy.xml" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

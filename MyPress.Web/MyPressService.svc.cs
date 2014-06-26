@@ -1,5 +1,12 @@
-﻿using MongoRepository;
-using Limilabs.Mail;
+﻿using System;
+using System.Configuration;
+using System.Net;
+using System.Net.Configuration;
+using System.Net.Mail;
+using System.Text;
+using ActiveUp.Net.Mail;
+using MongoRepository;
+
 
 
 namespace MyPress.Web
@@ -92,11 +99,15 @@ return ErrorList.FailedPass;
 
             if (repository.Exists(x => x.Email == data.Email))
             {
-            
 
+
+             
                
+              
+                SmtpSection section = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
 
-                //Подключить mail настроить с шаблоном geometric
+
+          
 
 
 

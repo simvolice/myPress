@@ -106,6 +106,15 @@ namespace MyPress.Client.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Почтовый ящик не существует.
+        /// </summary>
+        public static string EmailNull {
+            get {
+                return ResourceManager.GetString("EmailNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Неправильное имя пользователя или пароль,попробуйте воспользоваться функцией восстановления пароля.
         /// </summary>
         public static string FailedPassword {

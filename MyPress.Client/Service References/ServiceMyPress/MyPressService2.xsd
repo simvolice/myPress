@@ -31,6 +31,7 @@
       <xs:enumeration value="DublicateEmail" />
       <xs:enumeration value="SuccesPassword" />
       <xs:enumeration value="FailedPass" />
+      <xs:enumeration value="EmailNull" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="ErrorList" nillable="true" type="tns:ErrorList" />

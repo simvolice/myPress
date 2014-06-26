@@ -366,7 +366,7 @@ namespace MyPress.Client.ViewModel
                 var func = Observable.FromEventPattern<CheckUserCompletedEventArgs>(myPressService, "CheckUserCompleted")
                     .ObserveOnDispatcher();
                 myPressService.CheckUserAsync(serviceData);
-                func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
+              disposableReg =  func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
 
             }
         }

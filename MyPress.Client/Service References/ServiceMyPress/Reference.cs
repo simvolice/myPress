@@ -183,6 +183,9 @@ namespace MyPress.Client.ServiceMyPress {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         FailedPass = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EmailNull = 5,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -199,15 +202,10 @@ namespace MyPress.Client.ServiceMyPress {
         
         void EndAddUser(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/EnterUser", ReplyAction="http://tempuri.org/IMyPressService/EnterUserResponse")]
-        System.IAsyncResult BeginEnterUser(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState);
-        
-        void EndEnterUser(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/RestorePass", ReplyAction="http://tempuri.org/IMyPressService/RestorePassResponse")]
-        System.IAsyncResult BeginRestorePass(System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginRestorePass(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState);
         
-        void EndRestorePass(System.IAsyncResult result);
+        MyPress.Client.ServiceMyPress.ErrorList EndRestorePass(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/CheckUser", ReplyAction="http://tempuri.org/IMyPressService/CheckUserResponse")]
         System.IAsyncResult BeginCheckUser(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState);
@@ -222,6 +220,25 @@ namespace MyPress.Client.ServiceMyPress {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMyPressServiceChannel : MyPress.Client.ServiceMyPress.IMyPressService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class RestorePassCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public RestorePassCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public MyPress.Client.ServiceMyPress.ErrorList Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((MyPress.Client.ServiceMyPress.ErrorList)(this.results[0]));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -277,12 +294,6 @@ namespace MyPress.Client.ServiceMyPress {
         private EndOperationDelegate onEndAddUserDelegate;
         
         private System.Threading.SendOrPostCallback onAddUserCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginEnterUserDelegate;
-        
-        private EndOperationDelegate onEndEnterUserDelegate;
-        
-        private System.Threading.SendOrPostCallback onEnterUserCompletedDelegate;
         
         private BeginOperationDelegate onBeginRestorePassDelegate;
         
@@ -359,9 +370,7 @@ namespace MyPress.Client.ServiceMyPress {
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddUserCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> EnterUserCompleted;
-        
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> RestorePassCompleted;
+        public event System.EventHandler<RestorePassCompletedEventArgs> RestorePassCompleted;
         
         public event System.EventHandler<CheckUserCompletedEventArgs> CheckUserCompleted;
         
@@ -468,81 +477,38 @@ namespace MyPress.Client.ServiceMyPress {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginEnterUser(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginEnterUser(data, callback, asyncState);
+        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginRestorePass(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginRestorePass(data, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void MyPress.Client.ServiceMyPress.IMyPressService.EndEnterUser(System.IAsyncResult result) {
-            base.Channel.EndEnterUser(result);
-        }
-        
-        private System.IAsyncResult OnBeginEnterUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            MyPress.Client.ServiceMyPress.Data data = ((MyPress.Client.ServiceMyPress.Data)(inValues[0]));
-            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginEnterUser(data, callback, asyncState);
-        }
-        
-        private object[] OnEndEnterUser(System.IAsyncResult result) {
-            ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).EndEnterUser(result);
-            return null;
-        }
-        
-        private void OnEnterUserCompleted(object state) {
-            if ((this.EnterUserCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.EnterUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void EnterUserAsync(MyPress.Client.ServiceMyPress.Data data) {
-            this.EnterUserAsync(data, null);
-        }
-        
-        public void EnterUserAsync(MyPress.Client.ServiceMyPress.Data data, object userState) {
-            if ((this.onBeginEnterUserDelegate == null)) {
-                this.onBeginEnterUserDelegate = new BeginOperationDelegate(this.OnBeginEnterUser);
-            }
-            if ((this.onEndEnterUserDelegate == null)) {
-                this.onEndEnterUserDelegate = new EndOperationDelegate(this.OnEndEnterUser);
-            }
-            if ((this.onEnterUserCompletedDelegate == null)) {
-                this.onEnterUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnEnterUserCompleted);
-            }
-            base.InvokeAsync(this.onBeginEnterUserDelegate, new object[] {
-                        data}, this.onEndEnterUserDelegate, this.onEnterUserCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginRestorePass(System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginRestorePass(callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void MyPress.Client.ServiceMyPress.IMyPressService.EndRestorePass(System.IAsyncResult result) {
-            base.Channel.EndRestorePass(result);
+        MyPress.Client.ServiceMyPress.ErrorList MyPress.Client.ServiceMyPress.IMyPressService.EndRestorePass(System.IAsyncResult result) {
+            return base.Channel.EndRestorePass(result);
         }
         
         private System.IAsyncResult OnBeginRestorePass(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginRestorePass(callback, asyncState);
+            MyPress.Client.ServiceMyPress.Data data = ((MyPress.Client.ServiceMyPress.Data)(inValues[0]));
+            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginRestorePass(data, callback, asyncState);
         }
         
         private object[] OnEndRestorePass(System.IAsyncResult result) {
-            ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).EndRestorePass(result);
-            return null;
+            MyPress.Client.ServiceMyPress.ErrorList retVal = ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).EndRestorePass(result);
+            return new object[] {
+                    retVal};
         }
         
         private void OnRestorePassCompleted(object state) {
             if ((this.RestorePassCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.RestorePassCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                this.RestorePassCompleted(this, new RestorePassCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void RestorePassAsync() {
-            this.RestorePassAsync(null);
+        public void RestorePassAsync(MyPress.Client.ServiceMyPress.Data data) {
+            this.RestorePassAsync(data, null);
         }
         
-        public void RestorePassAsync(object userState) {
+        public void RestorePassAsync(MyPress.Client.ServiceMyPress.Data data, object userState) {
             if ((this.onBeginRestorePassDelegate == null)) {
                 this.onBeginRestorePassDelegate = new BeginOperationDelegate(this.OnBeginRestorePass);
             }
@@ -552,7 +518,8 @@ namespace MyPress.Client.ServiceMyPress {
             if ((this.onRestorePassCompletedDelegate == null)) {
                 this.onRestorePassCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnRestorePassCompleted);
             }
-            base.InvokeAsync(this.onBeginRestorePassDelegate, null, this.onEndRestorePassDelegate, this.onRestorePassCompletedDelegate, userState);
+            base.InvokeAsync(this.onBeginRestorePassDelegate, new object[] {
+                        data}, this.onEndRestorePassDelegate, this.onRestorePassCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -750,27 +717,17 @@ namespace MyPress.Client.ServiceMyPress {
                 base.EndInvoke("AddUser", _args, result);
             }
             
-            public System.IAsyncResult BeginEnterUser(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginRestorePass(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[1];
                 _args[0] = data;
-                System.IAsyncResult _result = base.BeginInvoke("EnterUser", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public void EndEnterUser(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                base.EndInvoke("EnterUser", _args, result);
-            }
-            
-            public System.IAsyncResult BeginRestorePass(System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[0];
                 System.IAsyncResult _result = base.BeginInvoke("RestorePass", _args, callback, asyncState);
                 return _result;
             }
             
-            public void EndRestorePass(System.IAsyncResult result) {
+            public MyPress.Client.ServiceMyPress.ErrorList EndRestorePass(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                base.EndInvoke("RestorePass", _args, result);
+                MyPress.Client.ServiceMyPress.ErrorList _result = ((MyPress.Client.ServiceMyPress.ErrorList)(base.EndInvoke("RestorePass", _args, result)));
+                return _result;
             }
             
             public System.IAsyncResult BeginCheckUser(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
