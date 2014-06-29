@@ -4,7 +4,8 @@ using System.Net;
 using System.Net.Configuration;
 using System.Net.Mail;
 using System.Text;
-using ActiveUp.Net.Mail;
+using System.IO;
+using System.Linq;
 using MongoRepository;
 
 
@@ -97,14 +98,62 @@ return ErrorList.FailedPass;
         {
             MongoRepository<DataPersistance> repository = new MongoRepository<DataPersistance>();
 
+
+           
+
+
             if (repository.Exists(x => x.Email == data.Email))
             {
 
 
-             
+                var Pass = repository.Where(x => x.Email == data.Email).SingleOrDefault();
+
+                StreamReader str = File.OpenText(@"C:\Users\mKazi_000\Downloads\geometric-updated\geometric\html_with_cm_tags\full_width_alt.html");
+
+                
+
+
+
+
                
-              
                 SmtpSection section = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+
+                System.Net.Mail.MailMessage mail = new MailMessage();
+
+                mail.From = new MailAddress(section.From);
+                mail.To.Add(data.Email);
+                mail.Subject = Resource.ResAll.RestorePass;
+               
+
+
+
+                mail.IsBodyHtml = true;
+
+
+
+
+                
+                mail.Body = str.ReadToEnd().Replace("[Password]",Pass.Pass);
+
+                
+
+
+                SmtpClient smtp = new SmtpClient(section.Network.Host, section.Network.Port);
+
+                smtp.Credentials = new NetworkCredential(section.Network.UserName, section.Network.Password);
+                smtp.EnableSsl = section.Network.EnableSsl;
+
+              
+
+                smtp.Send(mail);
+
+
+
+
+             
+
+              
+
 
 
           
@@ -128,6 +177,7 @@ return ErrorList.FailedPass;
 
         }
 
+      
 
 
 
