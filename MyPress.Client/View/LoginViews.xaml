@@ -8,7 +8,7 @@
            xmlns:system="clr-namespace:System;assembly=mscorlib"
            xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
            d:DesignWidth="640" d:DesignHeight="480"
-           Title="LoginViews Page" DataContext="{Binding Source={StaticResource Locator}, Path=MainLogin}">
+           Title="LoginViews Page" DataContext="{Binding Source={StaticResource Locator}, Path=MainLogin}" Width="Auto" Height="Auto">
     
     <navigation:Page.Resources>
 
@@ -116,12 +116,12 @@
                                         <VisualState x:Name="Disabled"/>
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
-                                <Image x:Name="image" Opacity="0.495" Source="/MyPress2;component/Image/клякса1.png" RenderTransformOrigin="0.5,0.5" Margin="-20.576,-9.239,-44.576,-34.239" Stretch="UniformToFill">
+                                <Image x:Name="image" Opacity="0.53" Source="/MyPress2;component/Image/клякса1.png" RenderTransformOrigin="0.5,0.5" Margin="-20.576,-9.239,-44.576,-34.239" Stretch="UniformToFill">
                                     <Image.RenderTransform>
                                         <CompositeTransform Rotation="40.877"/>
                                     </Image.RenderTransform>
                                 </Image>
-                                <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Left" Height="21.333" Margin="39.168,35.001,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="0.5,0.5" Opacity="0.7">
+                                <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Left" Height="21.333" Margin="58.168,48.001,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="0.5,0.5" Opacity="0.7">
                                     <ContentPresenter.RenderTransform>
                                         <CompositeTransform/>
                                     </ContentPresenter.RenderTransform>
@@ -160,13 +160,19 @@
                                         <VisualState x:Name="Normal"/>
                                         <VisualState x:Name="MouseOver">
                                             <Storyboard>
-                                                <ColorAnimation Duration="0" To="#FF957B74" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="MouseOverBorder"/>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderThickness)" Storyboard.TargetName="MouseOverBorder">
                                                     <DiscreteObjectKeyFrame KeyTime="0">
                                                         <DiscreteObjectKeyFrame.Value>
-                                                            <Thickness>2</Thickness>
-                                                        </DiscreteObjectKeyFrame.Value>
+                                                    		<Thickness>1</Thickness>
+                                                    	</DiscreteObjectKeyFrame.Value>
                                                     </DiscreteObjectKeyFrame>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="MouseOverBorder">
+                                                	<DiscreteObjectKeyFrame KeyTime="0">
+                                                		<DiscreteObjectKeyFrame.Value>
+                                                			<SolidColorBrush Color="#FF817876"/>
+                                                		</DiscreteObjectKeyFrame.Value>
+                                                	</DiscreteObjectKeyFrame>
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
@@ -195,8 +201,8 @@
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="FocusVisualElement">
                                                     <DiscreteObjectKeyFrame KeyTime="0">
                                                         <DiscreteObjectKeyFrame.Value>
-                                                            <SolidColorBrush Color="#FFDAC6BB"/>
-                                                        </DiscreteObjectKeyFrame.Value>
+                                                    		<SolidColorBrush Color="#FF817876"/>
+                                                    	</DiscreteObjectKeyFrame.Value>
                                                     </DiscreteObjectKeyFrame>
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
@@ -247,7 +253,7 @@
                                     <Grid>
                                         <Border x:Name="ReadOnlyVisualElement" Background="#5EC9C9C9" Opacity="0"/>
                                         <Border x:Name="MouseOverBorder" BorderBrush="Transparent" BorderThickness="1">
-                                            <ScrollViewer x:Name="ContentElement" BorderThickness="0" IsTabStop="False" Padding="{TemplateBinding Padding}" Margin="-1.333,-1.333,-1,-1.12" VerticalAlignment="Top" Height="14.453"/>
+                                            <ScrollViewer x:Name="ContentElement" BorderThickness="0" IsTabStop="False" Padding="{TemplateBinding Padding}" Margin="-1" VerticalAlignment="Top" Height="23"/>
                                         </Border>
                                     </Grid>
                                 </Border>
@@ -376,40 +382,187 @@
                     </DiscreteObjectKeyFrame>
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
+            <Style x:Key="PasswordBoxStyle1" TargetType="PasswordBox">
+            	<Setter Property="BorderThickness" Value="1"/>
+            	<Setter Property="Background" Value="#FFFFFFFF"/>
+            	<Setter Property="Foreground" Value="#FF000000"/>
+            	<Setter Property="Padding" Value="2"/>
+            	<Setter Property="BorderBrush">
+            		<Setter.Value>
+            			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            				<GradientStop Color="#FFA3AEB9" Offset="0"/>
+            				<GradientStop Color="#FF8399A9" Offset="0.375"/>
+            				<GradientStop Color="#FF718597" Offset="0.375"/>
+            				<GradientStop Color="#FF617584" Offset="1"/>
+            			</LinearGradientBrush>
+            		</Setter.Value>
+            	</Setter>
+            	<Setter Property="Template">
+            		<Setter.Value>
+            			<ControlTemplate TargetType="PasswordBox">
+            				<Grid x:Name="RootElement">
+            					<VisualStateManager.VisualStateGroups>
+            						<VisualStateGroup x:Name="CommonStates">
+            							<VisualState x:Name="Normal"/>
+            							<VisualState x:Name="MouseOver">
+            								<Storyboard>
+            									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="FocusVisualElement">
+            										<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+            									</ObjectAnimationUsingKeyFrames>
+            									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="MouseOverBorder">
+            										<DiscreteObjectKeyFrame KeyTime="0">
+            											<DiscreteObjectKeyFrame.Value>
+            												<SolidColorBrush Color="#FF817876"/>
+            											</DiscreteObjectKeyFrame.Value>
+            										</DiscreteObjectKeyFrame>
+            									</ObjectAnimationUsingKeyFrames>
+            								</Storyboard>
+            							</VisualState>
+            							<VisualState x:Name="Disabled">
+            								<Storyboard>
+            									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="DisabledVisualElement"/>
+            								</Storyboard>
+            							</VisualState>
+            						</VisualStateGroup>
+            						<VisualStateGroup x:Name="FocusStates">
+            							<VisualState x:Name="Focused">
+            								<Storyboard>
+            									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualElement"/>
+            								</Storyboard>
+            							</VisualState>
+            							<VisualState x:Name="Unfocused">
+            								<Storyboard>
+            									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualElement"/>
+            								</Storyboard>
+            							</VisualState>
+            						</VisualStateGroup>
+            						<VisualStateGroup x:Name="ValidationStates">
+            							<VisualState x:Name="Valid"/>
+            							<VisualState x:Name="InvalidUnfocused">
+            								<Storyboard>
+            									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ValidationErrorElement">
+            										<DiscreteObjectKeyFrame KeyTime="0">
+            											<DiscreteObjectKeyFrame.Value>
+            												<Visibility>Visible</Visibility>
+            											</DiscreteObjectKeyFrame.Value>
+            										</DiscreteObjectKeyFrame>
+            									</ObjectAnimationUsingKeyFrames>
+            								</Storyboard>
+            							</VisualState>
+            							<VisualState x:Name="InvalidFocused">
+            								<Storyboard>
+            									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ValidationErrorElement">
+            										<DiscreteObjectKeyFrame KeyTime="0">
+            											<DiscreteObjectKeyFrame.Value>
+            												<Visibility>Visible</Visibility>
+            											</DiscreteObjectKeyFrame.Value>
+            										</DiscreteObjectKeyFrame>
+            									</ObjectAnimationUsingKeyFrames>
+            									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsOpen" Storyboard.TargetName="validationTooltip">
+            										<DiscreteObjectKeyFrame KeyTime="0">
+            											<DiscreteObjectKeyFrame.Value>
+            												<system:Boolean>True</system:Boolean>
+            											</DiscreteObjectKeyFrame.Value>
+            										</DiscreteObjectKeyFrame>
+            									</ObjectAnimationUsingKeyFrames>
+            								</Storyboard>
+            							</VisualState>
+            						</VisualStateGroup>
+            					</VisualStateManager.VisualStateGroups>
+            					<Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1" Opacity="1" BorderBrush="#FF6E6462">
+            						<Border x:Name="MouseOverBorder" BorderBrush="Transparent" BorderThickness="1">
+            							<Border x:Name="ContentElement" Margin="-1"/>
+            						</Border>
+            					</Border>
+            					<Border x:Name="DisabledVisualElement" BorderBrush="#A5F7F7F7" BorderThickness="{TemplateBinding BorderThickness}" Background="#A5F7F7F7" IsHitTestVisible="False" Opacity="0"/>
+            					<Border x:Name="FocusVisualElement" BorderBrush="#FF6E6462" BorderThickness="{TemplateBinding BorderThickness}" IsHitTestVisible="False" Margin="1" Opacity="0"/>
+            					<Border x:Name="ValidationErrorElement" BorderBrush="#FFDB000C" BorderThickness="1" CornerRadius="1" Visibility="Collapsed">
+            						<ToolTipService.ToolTip>
+            							<ToolTip x:Name="validationTooltip" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" Placement="Right" PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" Template="{StaticResource ValidationToolTipTemplate}">
+            								<ToolTip.Triggers>
+            									<EventTrigger RoutedEvent="Canvas.Loaded">
+            										<BeginStoryboard>
+            											<Storyboard>
+            												<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="validationTooltip">
+            													<DiscreteObjectKeyFrame KeyTime="0">
+            														<DiscreteObjectKeyFrame.Value>
+            															<system:Boolean>true</system:Boolean>
+            														</DiscreteObjectKeyFrame.Value>
+            													</DiscreteObjectKeyFrame>
+            												</ObjectAnimationUsingKeyFrames>
+            											</Storyboard>
+            										</BeginStoryboard>
+            									</EventTrigger>
+            								</ToolTip.Triggers>
+            							</ToolTip>
+            						</ToolTipService.ToolTip>
+            						<Grid Background="Transparent" HorizontalAlignment="Right" Height="12" Margin="1,-4,-4,0" VerticalAlignment="Top" Width="12">
+            							<Path Data="M 1,0 L6,0 A 2,2 90 0 1 8,2 L8,7 z" Fill="#FFDC000C" Margin="1,3,0,0"/>
+            							<Path Data="M 0,0 L2,0 L 8,6 L8,8" Fill="#ffffff" Margin="1,3,0,0"/>
+            						</Grid>
+            					</Border>
+            				</Grid>
+            			</ControlTemplate>
+            		</Setter.Value>
+            	</Setter>
+            </Style>
         
     </navigation:Page.Resources>
 
 
 
-    <Grid x:Name="LayoutRoot" >
-        <Grid x:Name="FonSmi" Clip="M0,0L2128,0 2128,1416 0,1416z" HorizontalAlignment="Left" Height="483" UseLayoutRounding="False" VerticalAlignment="Top" Width="640" Margin="0.001,-0.167,-0.001,-2.833" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <CompositeTransform/>
-            </Grid.RenderTransform>
-            <Grid.Background>
-                <ImageBrush Stretch="UniformToFill" ImageSource="/Image/fonSmi.jpg"/>
-            </Grid.Background>
-            <TextBlock x:Name="Aunt" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Resource1.Zalogin, Source={StaticResource StResource1}}" VerticalAlignment="Top" Margin="288.238,222.539,0,0" Foreground="#FF6E6462" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" FontSize="12" FontWeight="Bold"/>
-            <TextBlock x:Name="Log" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Resource1.UserNameLabel, Source={StaticResource StResource1}}" VerticalAlignment="Top" Margin="229,249.983,0,0" Foreground="#FF514243" FontSize="9.333"/>
-
-
-
-            <TextBox x:Name="UserNameLabel" HorizontalAlignment="Left" Height="16" Margin="279.657,249.826,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135.5" FontSize="8" TextAlignment="Center" Style="{StaticResource TextBoxStyle1}" Text="{Binding User, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Press Style" CharacterSpacing="10"/>
-
-
-
-            <HyperlinkButton x:Name="Reg" Content="{Binding Resource1.Regestr, Source={StaticResource StResource1}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="232.161,311.318,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold" Command="{Binding MyCommand}"/>
-
-
-            <HyperlinkButton Command="{Binding RestorePasswCommand}"  x:Name="Recovpass" Content="{Binding Resource1.RemembPass, Source={StaticResource StResource1}}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="344.489,311.316,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Hand Shop Typography A20_demo" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold"/>
-
-
-
-
-            <TextBlock x:Name="Pass" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Resource1.PasswordLabel, Source={StaticResource StResource1}}" VerticalAlignment="Top" Margin="222.833,276.317,0,0" Foreground="#FF514243" FontSize="9.333"/>
-            <Button  Command="{Binding Path=EnteRelayCommand}" Style="{StaticResource ButtonStyle7}" x:Name="Enter"  Content="{Binding Resource1.ButtEnter, Source={StaticResource StResource1}}" Margin="268.162,307.204,250.838,85.595" RenderTransformOrigin="0.5,0.5" FontSize="13.333" Foreground="#FF040404"/>
-            <PasswordBox HorizontalAlignment="Left" Margin="280,274,0,0" VerticalAlignment="Top" Width="135" Height="16" x:Name="PasswordLabel" Password="{Binding Password, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" IsTabStop="True"/>
-        </Grid>
+    <Grid x:Name="LayoutRoot" UseLayoutRounding="False" >
+    	<Grid.Background>
+    		<ImageBrush Stretch="UniformToFill" ImageSource="/Image/paper_texture3557 (1).jpg"/>
+    	</Grid.Background>
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition/>
+    	</Grid.ColumnDefinitions>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="5*"/>
+    		<RowDefinition Height="43*"/>
+    	</Grid.RowDefinitions>
+    	<Grid VerticalAlignment="Center" Margin="117.963,4.667,97.963,5.333" Height="470" HorizontalAlignment="Center" Grid.RowSpan="2">
+    		<Grid.Background>
+    			<ImageBrush Stretch="None"/>
+    		</Grid.Background>
+    		<Grid Margin="-42.963,-454.667,-112.963,-172.233" HorizontalAlignment="Right" Width="580">
+    			<Grid.Effect>
+    				<DropShadowEffect/>
+    			</Grid.Effect>
+    			<Grid.Background>
+    				<ImageBrush ImageSource="4.png" Stretch="UniformToFill"/>
+    			</Grid.Background>
+    			<Grid HorizontalAlignment="Left" Width="515" Margin="-27.963,379.667,0,-15">
+    				<Grid.Background>
+    					<ImageBrush Stretch="Fill" ImageSource="/Image/4.png"/>
+    				</Grid.Background>
+    			</Grid>
+    			<TextBlock x:Name="Aunt" TextWrapping="Wrap" Text="{Binding Resource1.Zalogin, Source={StaticResource StResource1}}" Foreground="#FF544545" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontWeight="Bold" UseLayoutRounding="True" Margin="197,645,181,418.9" FontSize="21.333" HorizontalAlignment="Center" Width="202" VerticalAlignment="Center" TextAlignment="Center" TextDecorations="Underline" Height="33"/>
+    			<TextBlock x:Name="Log" TextWrapping="Wrap" Text="{Binding Resource1.UserNameLabel, Source={StaticResource StResource1}}" Foreground="#FF514243" FontSize="12" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" Height="16.23" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="179.984" Margin="0,703.22,195.016,377.45" FontWeight="Bold" TextAlignment="Center">
+    				<TextBlock.RenderTransform>
+    					<CompositeTransform Rotation="-0.084"/>
+    				</TextBlock.RenderTransform>
+    			</TextBlock>
+    			<TextBox x:Name="UserNameLabel" TextWrapping="Wrap" FontSize="12" Style="{StaticResource TextBoxStyle1}" Text="{Binding User, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" CharacterSpacing="10" AllowDrop="True" UseLayoutRounding="True" Foreground="#FF514243" Margin="178,734,162,337.9" Height="25"/>
+    			<Button  Command="{Binding EnteRelayCommand}" Style="{StaticResource ButtonStyle7}" x:Name="Enter" IsEnabled="{Binding EnableButtonEnter}" Content="{Binding Resource1.ButtEnter, Source={StaticResource StResource1}}" RenderTransformOrigin="0.5,0.5" FontSize="10.667" Margin="0,0,235,115.393" Width="148.5" Height="93.707" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#FFF2D9B1"/>
+    			<HyperlinkButton x:Name="Reg" Content="{Binding Resource1.Regestr, Source={StaticResource StResource1}}" FontSize="12" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold" Command="{Binding MyCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FlowDirection="LeftToRight" Margin="80,874.128,0,0" Width="130.934" HorizontalAlignment="Left" VerticalAlignment="Top" Height="19.872"/>
+    			<HyperlinkButton Command="{Binding RestorePasswCommand}"  x:Name="Recovpass" Content="{Binding Resource1.RemembPass, Source={StaticResource StResource1}}" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" Background="{x:Null}" Foreground="#FF514243" Style="{StaticResource HyperlinkButtonStyle1}" FontWeight="Bold" FontSize="12" Margin="300,874.128,150,202.9" HorizontalAlignment="Center" VerticalAlignment="Center" Width="130" Height="19.872"/>
+    			<TextBlock x:Name="Pass" TextWrapping="Wrap" Text="{Binding Resource1.PasswordLabel, Source={StaticResource StResource1}}" Foreground="#FF514243" FontSize="12" Height="14.774" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" Margin="216,772.2,209.998,309.926" FontWeight="Bold" TextAlignment="Center"/>
+    			<PasswordBox x:Name="PasswordLabel" Password="{Binding Password, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" IsTabStop="True" Style="{StaticResource PasswordBoxStyle1}" Width="240" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontSize="12" Foreground="#FF514243" Margin="177.039,800,0,0" HorizontalAlignment="Left" Height="22.822" VerticalAlignment="Top"/>
+    		</Grid>
+    	</Grid>
+    	<Grid Margin="54,0,0,0" Grid.Row="1" Width="351" Height="140" HorizontalAlignment="Left" VerticalAlignment="Top">
+    		<TextBlock HorizontalAlignment="Left" Margin="36,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" FontSize="48" Foreground="#FFF9F9F9" FontWeight="Bold" FontFamily="Times New Roman" OpacityMask="#FF782D2D">
+    			<Run Text="MY "/>
+    			<Run FontSize="96" Text="P"/>
+    			<Run Text="RESS"/>
+    		</TextBlock>
+    		<Border BorderBrush="#FFF9F9F9" BorderThickness="0,2" Margin="196,44,0,0" OpacityMask="#FF782D2D" Height="10" VerticalAlignment="Top" Width="119" HorizontalAlignment="Left"/>
+    		<Border BorderBrush="#FFF9F9F9" BorderThickness="0,2" HorizontalAlignment="Left" Height="10" Margin="36,44,0,0" VerticalAlignment="Top" Width="95" OpacityMask="#FF782D2D"/>
+    		<Border BorderBrush="#FFF9F9F9" BorderThickness="0,2" HorizontalAlignment="Left" Height="15.39" Margin="21,104,0,0" VerticalAlignment="Top" Width="310" OpacityMask="#FF782D2D"/>
+    		<Border BorderBrush="#FFF9F9F9" BorderThickness="3" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="351" Margin="2,0,-2,0"/>
+    	</Grid>
     </Grid>
 
 

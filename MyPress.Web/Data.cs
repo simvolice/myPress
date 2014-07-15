@@ -24,8 +24,10 @@ namespace MyPress.Web
      
 
        [DataMember]
-        public List<Bing> Bing { get; set; }
+        public List<Rubriki> Rubriki { get; set; }
 
+       [DataMember]
+       public List<Bing> Bing { get; set; }
 
         public Data()
         {
@@ -40,8 +42,8 @@ namespace MyPress.Web
             this.Email = dataPersistance.Email;
 
 
-            this.Bing = dataPersistance.Bing;
-
+            this.Rubriki = dataPersistance.Rubriki;
+            
 
 
         }
@@ -53,12 +55,12 @@ namespace MyPress.Web
 
             DataPersistance dataPersistance = new DataPersistance();
 
-           
-            dataPersistance.Bing = this.Bing;
+
+            dataPersistance.Rubriki = this.Rubriki;
             dataPersistance.Email = this.Email;
             dataPersistance.Pass = this.Pass;
             dataPersistance.Login = this.Login;
-
+       
 
            
             return dataPersistance;

@@ -3,6 +3,9 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MyPress.Client.Model;
+using MyPress.Client.View;
+
+
 
 namespace MyPress.Client.ViewModel
 {
@@ -29,8 +32,8 @@ namespace MyPress.Client.ViewModel
 
         private void ExecuteMyCommand()
         {
-            Uri uri = new Uri("/LoginViews", UriKind.Relative);
-            Messenger.Default.Send<Uri>(uri, "Navigate"); 
+            ChildWindow1 ch = new ChildWindow1();
+            ch.Show();
 
         }
 

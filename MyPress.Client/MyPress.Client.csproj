@@ -154,6 +154,9 @@
     <Compile Include="ViewModel\RegViewModel.cs" />
     <Compile Include="ViewModel\RestorePassViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\ChildWindow1.xaml.cs">
+      <DependentUpon>ChildWindow1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginViews.xaml.cs">
       <DependentUpon>LoginViews.xaml</DependentUpon>
     </Compile>
@@ -179,13 +182,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\ChildWindow1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\LoginViews.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\MainPages.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -236,6 +243,9 @@
     <Resource Include="Image\Слой 6.png" />
     <Resource Include="Image\Слой 7.png" />
     <Content Include="clientaccesspolicy.xml" />
+    <Resource Include="Image\4.png" />
+    <Resource Include="Image\paper_texture3557 %281%29.jpg" />
+    <Resource Include="Image\01196.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

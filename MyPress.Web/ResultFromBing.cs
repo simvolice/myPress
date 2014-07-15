@@ -8,12 +8,12 @@ namespace MyPress.Web
 
         public List<Bing> ResultFBing(string query, string market, int countQuery)
         {
-        
-        
 
 
 
-          List<Bing>  list = new List<Bing>();
+
+
+            List<Bing> list = new List<Bing>();
 
         SearchBing searchBing = new SearchBing();
             SentimentAnal sentimentAnal = new SentimentAnal();
