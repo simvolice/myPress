@@ -12,7 +12,7 @@ namespace MyPress.Web
     public interface IMyPressService
     {
         [OperationContract]
-        void QueryToBing(string query, Data data, string market, int countQuery);
+        void QueryToBing(string query, Data data, string market, int countQuery, string nameRub);
 
         [OperationContract]
         void AddUser(Data data);

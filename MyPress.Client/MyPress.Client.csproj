@@ -149,13 +149,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\CreateRubViewModel1.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RegViewModel.cs" />
     <Compile Include="ViewModel\RestorePassViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\ChildWindow1.xaml.cs">
-      <DependentUpon>ChildWindow1.xaml</DependentUpon>
+    <Compile Include="View\CreateRubrics.xaml.cs">
+      <DependentUpon>CreateRubrics.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginViews.xaml.cs">
       <DependentUpon>LoginViews.xaml</DependentUpon>
@@ -182,7 +183,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\ChildWindow1.xaml">
+    <Page Include="View\CreateRubrics.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -227,25 +228,7 @@
     <None Include="Service References\ServiceMyPress\MyPressService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Resource Include="Image\1851.jpg" />
-    <Resource Include="Image\backGround.png" />
-    <Resource Include="Image\close-icon-white-border.png" />
-    <Resource Include="Image\fon.png" />
-    <Resource Include="Image\fonSmi.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Image\magnifier.png" />
-    <Resource Include="Image\P.png" />
-    <Resource Include="Image\regtekstur.png" />
-    <Resource Include="Image\клякса1.png" />
-    <Resource Include="Image\Слой 4.png" />
-    <Resource Include="Image\Слой 5.png" />
-    <Resource Include="Image\Слой 6.png" />
-    <Resource Include="Image\Слой 7.png" />
     <Content Include="clientaccesspolicy.xml" />
-    <Resource Include="Image\4.png" />
-    <Resource Include="Image\paper_texture3557 %281%29.jpg" />
-    <Resource Include="Image\01196.png" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

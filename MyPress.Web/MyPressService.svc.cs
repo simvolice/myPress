@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Net.Configuration;
@@ -17,24 +18,38 @@ namespace MyPress.Web
     public class MyPressService : IMyPressService
     {
 
-       
-        public void QueryToBing(string query, Data data, string market, int countQuery)
+      
+        public void QueryToBing(string query, Data data, string market, int countQuery, string nameRub)
         {
 
 
             MongoRepository<DataPersistance> repository = new MongoRepository<DataPersistance>();
             ResultFromBing resultFromBing = new ResultFromBing();
+            List<Rubriki> list = new List<Rubriki>();
+         
+          
+          
 
 
 
-            data.Bing = resultFromBing.ResultFBing(query, market, countQuery);
+            list.AddRange(new[]
+                    {
+                        new Rubriki() {Name = nameRub, Coll = resultFromBing.ResultFBing(query, market, countQuery).Count, DateCreate = DateTime.Now, Bing = resultFromBing.ResultFBing(query, market, countQuery)}
+                    
+
+                    });
+
+
+            data.Rubriki = list;
+
+       
 
 
 
 
 
 
-            repository.Update(data.GetDataPersistance());
+            repository.Add(data.GetDataPersistance());
 
 
 

@@ -6,6 +6,7 @@
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Pass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rubriki" nillable="true" type="tns:ArrayOfRubriki" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Data" nillable="true" type="tns:Data" />
@@ -24,6 +25,21 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Bing" nillable="true" type="tns:Bing" />
+  <xs:complexType name="ArrayOfRubriki">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Rubriki" nillable="true" type="tns:Rubriki" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRubriki" nillable="true" type="tns:ArrayOfRubriki" />
+  <xs:complexType name="Rubriki">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bing" nillable="true" type="tns:ArrayOfBing" />
+      <xs:element minOccurs="0" name="Coll" type="xs:long" />
+      <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Rubriki" nillable="true" type="tns:Rubriki" />
   <xs:simpleType name="ErrorList">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Succes" />

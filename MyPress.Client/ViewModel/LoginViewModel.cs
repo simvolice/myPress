@@ -112,8 +112,8 @@ namespace MyPress.Client.ViewModel
             if (c.Equals(ErrorList.FailedPass))
               ValidateCustomError("Password",Resource1.FailedPassword);
             if (c.Equals(ErrorList.SuccesPassword))
-            Messenger.Default.Send<Uri>(uri, "Navigate"); 
-
+            Messenger.Default.Send<Uri>(uri, "Navigate");
+          
          
 
 

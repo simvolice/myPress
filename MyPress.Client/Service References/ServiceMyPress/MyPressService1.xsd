@@ -8,6 +8,7 @@
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MyPress.Web" minOccurs="0" name="data" nillable="true" type="q1:Data" />
         <xs:element minOccurs="0" name="market" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="countQuery" type="xs:int" />
+        <xs:element minOccurs="0" name="nameRub" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

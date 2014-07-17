@@ -16,7 +16,7 @@ namespace MyPress.Web
             SentiStrength sentiStrength = new SentiStrength();
             string result = string.Empty;
 
-            String[] ssthInitialisation = { "sentidata", @"C:\Users\weiss\Desktop\SentStrength_Data_Sept2011\" };
+            String[] ssthInitialisation = { "sentidata", @"C:/SentStrength/" };
 
 
             sentiStrength.initialise(ssthInitialisation); 

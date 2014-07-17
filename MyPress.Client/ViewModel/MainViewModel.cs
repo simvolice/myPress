@@ -1,4 +1,5 @@
 using System;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -49,6 +50,8 @@ namespace MyPress.Client.ViewModel
       
         public MainViewModel(IDataService dataService)
         {
+
+
             _dataService = dataService;
             _dataService.GetData(
                 (item, error) =>
@@ -72,7 +75,7 @@ namespace MyPress.Client.ViewModel
                 });
         }
 
-     
+    
         
         
         

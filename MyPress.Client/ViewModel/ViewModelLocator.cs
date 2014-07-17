@@ -46,6 +46,7 @@ namespace MyPress.Client.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<RegViewModel>();
+            SimpleIoc.Default.Register<CreateRubViewModel1>();
          
             
             
@@ -113,6 +114,21 @@ namespace MyPress.Client.ViewModel
 
 
         }
+
+
+
+         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+         public CreateRubViewModel1 CreateRub
+         {
+
+             get { return ServiceLocator.Current.GetInstance<CreateRubViewModel1>(); }
+
+
+
+
+         }
 
         /// <summary>
         /// Cleans up all the resources.

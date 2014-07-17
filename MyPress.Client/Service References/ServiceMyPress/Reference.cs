@@ -28,6 +28,8 @@ namespace MyPress.Client.ServiceMyPress {
         
         private string PassField;
         
+        private System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki> RubrikiField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Bing> Bing {
             get {
@@ -76,6 +78,19 @@ namespace MyPress.Client.ServiceMyPress {
                 if ((object.ReferenceEquals(this.PassField, value) != true)) {
                     this.PassField = value;
                     this.RaisePropertyChanged("Pass");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki> Rubriki {
+            get {
+                return this.RubrikiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RubrikiField, value) != true)) {
+                    this.RubrikiField = value;
+                    this.RaisePropertyChanged("Rubriki");
                 }
             }
         }
@@ -165,6 +180,81 @@ namespace MyPress.Client.ServiceMyPress {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Rubriki", Namespace="http://schemas.datacontract.org/2004/07/MyPress.Web")]
+    public partial class Rubriki : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Bing> BingField;
+        
+        private long CollField;
+        
+        private System.DateTime DateCreateField;
+        
+        private string NameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Bing> Bing {
+            get {
+                return this.BingField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BingField, value) != true)) {
+                    this.BingField = value;
+                    this.RaisePropertyChanged("Bing");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Coll {
+            get {
+                return this.CollField;
+            }
+            set {
+                if ((this.CollField.Equals(value) != true)) {
+                    this.CollField = value;
+                    this.RaisePropertyChanged("Coll");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.DateCreateField;
+            }
+            set {
+                if ((this.DateCreateField.Equals(value) != true)) {
+                    this.DateCreateField = value;
+                    this.RaisePropertyChanged("DateCreate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ErrorList", Namespace="http://schemas.datacontract.org/2004/07/MyPress.Web")]
     public enum ErrorList : int {
@@ -193,7 +283,7 @@ namespace MyPress.Client.ServiceMyPress {
     public interface IMyPressService {
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/QueryToBing", ReplyAction="http://tempuri.org/IMyPressService/QueryToBingResponse")]
-        System.IAsyncResult BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub, System.AsyncCallback callback, object asyncState);
         
         void EndQueryToBing(System.IAsyncResult result);
         
@@ -381,8 +471,8 @@ namespace MyPress.Client.ServiceMyPress {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginQueryToBing(query, data, market, countQuery, callback, asyncState);
+        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginQueryToBing(query, data, market, countQuery, nameRub, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -395,7 +485,8 @@ namespace MyPress.Client.ServiceMyPress {
             MyPress.Client.ServiceMyPress.Data data = ((MyPress.Client.ServiceMyPress.Data)(inValues[1]));
             string market = ((string)(inValues[2]));
             int countQuery = ((int)(inValues[3]));
-            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginQueryToBing(query, data, market, countQuery, callback, asyncState);
+            string nameRub = ((string)(inValues[4]));
+            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginQueryToBing(query, data, market, countQuery, nameRub, callback, asyncState);
         }
         
         private object[] OnEndQueryToBing(System.IAsyncResult result) {
@@ -410,11 +501,11 @@ namespace MyPress.Client.ServiceMyPress {
             }
         }
         
-        public void QueryToBingAsync(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery) {
-            this.QueryToBingAsync(query, data, market, countQuery, null);
+        public void QueryToBingAsync(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub) {
+            this.QueryToBingAsync(query, data, market, countQuery, nameRub, null);
         }
         
-        public void QueryToBingAsync(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, object userState) {
+        public void QueryToBingAsync(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub, object userState) {
             if ((this.onBeginQueryToBingDelegate == null)) {
                 this.onBeginQueryToBingDelegate = new BeginOperationDelegate(this.OnBeginQueryToBing);
             }
@@ -428,7 +519,8 @@ namespace MyPress.Client.ServiceMyPress {
                         query,
                         data,
                         market,
-                        countQuery}, this.onEndQueryToBingDelegate, this.onQueryToBingCompletedDelegate, userState);
+                        countQuery,
+                        nameRub}, this.onEndQueryToBingDelegate, this.onQueryToBingCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -690,12 +782,13 @@ namespace MyPress.Client.ServiceMyPress {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[4];
+            public System.IAsyncResult BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[5];
                 _args[0] = query;
                 _args[1] = data;
                 _args[2] = market;
                 _args[3] = countQuery;
+                _args[4] = nameRub;
                 System.IAsyncResult _result = base.BeginInvoke("QueryToBing", _args, callback, asyncState);
                 return _result;
             }
