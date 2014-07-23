@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/MyPress.Web" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MyPress.Web" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="DataCr">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CurrentUser" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataCr" nillable="true" type="tns:DataCr" />
   <xs:complexType name="Data">
     <xs:sequence>
       <xs:element minOccurs="0" name="Bing" nillable="true" type="tns:ArrayOfBing" />
@@ -34,9 +40,12 @@
   <xs:complexType name="Rubriki">
     <xs:sequence>
       <xs:element minOccurs="0" name="Bing" nillable="true" type="tns:ArrayOfBing" />
-      <xs:element minOccurs="0" name="Coll" type="xs:long" />
+      <xs:element minOccurs="0" name="CountCircle" type="xs:int" />
+      <xs:element minOccurs="0" name="CountRubr" type="xs:long" />
       <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Market" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Query" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Rubriki" nillable="true" type="tns:Rubriki" />

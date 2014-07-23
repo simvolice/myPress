@@ -17,6 +17,36 @@ namespace MyPress.Client.ServiceMyPress {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataCr", Namespace="http://schemas.datacontract.org/2004/07/MyPress.Web")]
+    public partial class DataCr : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string CurrentUserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CurrentUser {
+            get {
+                return this.CurrentUserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrentUserField, value) != true)) {
+                    this.CurrentUserField = value;
+                    this.RaisePropertyChanged("CurrentUser");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Data", Namespace="http://schemas.datacontract.org/2004/07/MyPress.Web")]
     public partial class Data : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -187,11 +217,17 @@ namespace MyPress.Client.ServiceMyPress {
         
         private System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Bing> BingField;
         
-        private long CollField;
+        private int CountCircleField;
+        
+        private long CountRubrField;
         
         private System.DateTime DateCreateField;
         
+        private string MarketField;
+        
         private string NameField;
+        
+        private string QueryField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Bing> Bing {
@@ -207,14 +243,27 @@ namespace MyPress.Client.ServiceMyPress {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Coll {
+        public int CountCircle {
             get {
-                return this.CollField;
+                return this.CountCircleField;
             }
             set {
-                if ((this.CollField.Equals(value) != true)) {
-                    this.CollField = value;
-                    this.RaisePropertyChanged("Coll");
+                if ((this.CountCircleField.Equals(value) != true)) {
+                    this.CountCircleField = value;
+                    this.RaisePropertyChanged("CountCircle");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long CountRubr {
+            get {
+                return this.CountRubrField;
+            }
+            set {
+                if ((this.CountRubrField.Equals(value) != true)) {
+                    this.CountRubrField = value;
+                    this.RaisePropertyChanged("CountRubr");
                 }
             }
         }
@@ -233,6 +282,19 @@ namespace MyPress.Client.ServiceMyPress {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Market {
+            get {
+                return this.MarketField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MarketField, value) != true)) {
+                    this.MarketField = value;
+                    this.RaisePropertyChanged("Market");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -241,6 +303,19 @@ namespace MyPress.Client.ServiceMyPress {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Query {
+            get {
+                return this.QueryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.QueryField, value) != true)) {
+                    this.QueryField = value;
+                    this.RaisePropertyChanged("Query");
                 }
             }
         }
@@ -282,8 +357,18 @@ namespace MyPress.Client.ServiceMyPress {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceMyPress.IMyPressService")]
     public interface IMyPressService {
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/GetCurrUser", ReplyAction="http://tempuri.org/IMyPressService/GetCurrUserResponse")]
+        System.IAsyncResult BeginGetCurrUser(System.AsyncCallback callback, object asyncState);
+        
+        string EndGetCurrUser(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/AddCurrUser", ReplyAction="http://tempuri.org/IMyPressService/AddCurrUserResponse")]
+        System.IAsyncResult BeginAddCurrUser(MyPress.Client.ServiceMyPress.DataCr dataCr, System.AsyncCallback callback, object asyncState);
+        
+        void EndAddCurrUser(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/QueryToBing", ReplyAction="http://tempuri.org/IMyPressService/QueryToBingResponse")]
-        System.IAsyncResult BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginQueryToBing(MyPress.Client.ServiceMyPress.Data data, MyPress.Client.ServiceMyPress.Rubriki rubriki, System.AsyncCallback callback, object asyncState);
         
         void EndQueryToBing(System.IAsyncResult result);
         
@@ -310,6 +395,25 @@ namespace MyPress.Client.ServiceMyPress {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMyPressServiceChannel : MyPress.Client.ServiceMyPress.IMyPressService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetCurrUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetCurrUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -372,6 +476,18 @@ namespace MyPress.Client.ServiceMyPress {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MyPressServiceClient : System.ServiceModel.ClientBase<MyPress.Client.ServiceMyPress.IMyPressService>, MyPress.Client.ServiceMyPress.IMyPressService {
+        
+        private BeginOperationDelegate onBeginGetCurrUserDelegate;
+        
+        private EndOperationDelegate onEndGetCurrUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetCurrUserCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginAddCurrUserDelegate;
+        
+        private EndOperationDelegate onEndAddCurrUserDelegate;
+        
+        private System.Threading.SendOrPostCallback onAddCurrUserCompletedDelegate;
         
         private BeginOperationDelegate onBeginQueryToBingDelegate;
         
@@ -456,6 +572,10 @@ namespace MyPress.Client.ServiceMyPress {
             }
         }
         
+        public event System.EventHandler<GetCurrUserCompletedEventArgs> GetCurrUserCompleted;
+        
+        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddCurrUserCompleted;
+        
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> QueryToBingCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddUserCompleted;
@@ -471,8 +591,97 @@ namespace MyPress.Client.ServiceMyPress {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginQueryToBing(query, data, market, countQuery, nameRub, callback, asyncState);
+        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginGetCurrUser(System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetCurrUser(callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        string MyPress.Client.ServiceMyPress.IMyPressService.EndGetCurrUser(System.IAsyncResult result) {
+            return base.Channel.EndGetCurrUser(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetCurrUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginGetCurrUser(callback, asyncState);
+        }
+        
+        private object[] OnEndGetCurrUser(System.IAsyncResult result) {
+            string retVal = ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).EndGetCurrUser(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetCurrUserCompleted(object state) {
+            if ((this.GetCurrUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetCurrUserCompleted(this, new GetCurrUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetCurrUserAsync() {
+            this.GetCurrUserAsync(null);
+        }
+        
+        public void GetCurrUserAsync(object userState) {
+            if ((this.onBeginGetCurrUserDelegate == null)) {
+                this.onBeginGetCurrUserDelegate = new BeginOperationDelegate(this.OnBeginGetCurrUser);
+            }
+            if ((this.onEndGetCurrUserDelegate == null)) {
+                this.onEndGetCurrUserDelegate = new EndOperationDelegate(this.OnEndGetCurrUser);
+            }
+            if ((this.onGetCurrUserCompletedDelegate == null)) {
+                this.onGetCurrUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetCurrUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetCurrUserDelegate, null, this.onEndGetCurrUserDelegate, this.onGetCurrUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginAddCurrUser(MyPress.Client.ServiceMyPress.DataCr dataCr, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginAddCurrUser(dataCr, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        void MyPress.Client.ServiceMyPress.IMyPressService.EndAddCurrUser(System.IAsyncResult result) {
+            base.Channel.EndAddCurrUser(result);
+        }
+        
+        private System.IAsyncResult OnBeginAddCurrUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MyPress.Client.ServiceMyPress.DataCr dataCr = ((MyPress.Client.ServiceMyPress.DataCr)(inValues[0]));
+            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginAddCurrUser(dataCr, callback, asyncState);
+        }
+        
+        private object[] OnEndAddCurrUser(System.IAsyncResult result) {
+            ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).EndAddCurrUser(result);
+            return null;
+        }
+        
+        private void OnAddCurrUserCompleted(object state) {
+            if ((this.AddCurrUserCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.AddCurrUserCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void AddCurrUserAsync(MyPress.Client.ServiceMyPress.DataCr dataCr) {
+            this.AddCurrUserAsync(dataCr, null);
+        }
+        
+        public void AddCurrUserAsync(MyPress.Client.ServiceMyPress.DataCr dataCr, object userState) {
+            if ((this.onBeginAddCurrUserDelegate == null)) {
+                this.onBeginAddCurrUserDelegate = new BeginOperationDelegate(this.OnBeginAddCurrUser);
+            }
+            if ((this.onEndAddCurrUserDelegate == null)) {
+                this.onEndAddCurrUserDelegate = new EndOperationDelegate(this.OnEndAddCurrUser);
+            }
+            if ((this.onAddCurrUserCompletedDelegate == null)) {
+                this.onAddCurrUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddCurrUserCompleted);
+            }
+            base.InvokeAsync(this.onBeginAddCurrUserDelegate, new object[] {
+                        dataCr}, this.onEndAddCurrUserDelegate, this.onAddCurrUserCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginQueryToBing(MyPress.Client.ServiceMyPress.Data data, MyPress.Client.ServiceMyPress.Rubriki rubriki, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginQueryToBing(data, rubriki, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -481,12 +690,9 @@ namespace MyPress.Client.ServiceMyPress {
         }
         
         private System.IAsyncResult OnBeginQueryToBing(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string query = ((string)(inValues[0]));
-            MyPress.Client.ServiceMyPress.Data data = ((MyPress.Client.ServiceMyPress.Data)(inValues[1]));
-            string market = ((string)(inValues[2]));
-            int countQuery = ((int)(inValues[3]));
-            string nameRub = ((string)(inValues[4]));
-            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginQueryToBing(query, data, market, countQuery, nameRub, callback, asyncState);
+            MyPress.Client.ServiceMyPress.Data data = ((MyPress.Client.ServiceMyPress.Data)(inValues[0]));
+            MyPress.Client.ServiceMyPress.Rubriki rubriki = ((MyPress.Client.ServiceMyPress.Rubriki)(inValues[1]));
+            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginQueryToBing(data, rubriki, callback, asyncState);
         }
         
         private object[] OnEndQueryToBing(System.IAsyncResult result) {
@@ -501,11 +707,11 @@ namespace MyPress.Client.ServiceMyPress {
             }
         }
         
-        public void QueryToBingAsync(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub) {
-            this.QueryToBingAsync(query, data, market, countQuery, nameRub, null);
+        public void QueryToBingAsync(MyPress.Client.ServiceMyPress.Data data, MyPress.Client.ServiceMyPress.Rubriki rubriki) {
+            this.QueryToBingAsync(data, rubriki, null);
         }
         
-        public void QueryToBingAsync(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub, object userState) {
+        public void QueryToBingAsync(MyPress.Client.ServiceMyPress.Data data, MyPress.Client.ServiceMyPress.Rubriki rubriki, object userState) {
             if ((this.onBeginQueryToBingDelegate == null)) {
                 this.onBeginQueryToBingDelegate = new BeginOperationDelegate(this.OnBeginQueryToBing);
             }
@@ -516,11 +722,8 @@ namespace MyPress.Client.ServiceMyPress {
                 this.onQueryToBingCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnQueryToBingCompleted);
             }
             base.InvokeAsync(this.onBeginQueryToBingDelegate, new object[] {
-                        query,
                         data,
-                        market,
-                        countQuery,
-                        nameRub}, this.onEndQueryToBingDelegate, this.onQueryToBingCompletedDelegate, userState);
+                        rubriki}, this.onEndQueryToBingDelegate, this.onQueryToBingCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -782,13 +985,34 @@ namespace MyPress.Client.ServiceMyPress {
                     base(client) {
             }
             
-            public System.IAsyncResult BeginQueryToBing(string query, MyPress.Client.ServiceMyPress.Data data, string market, int countQuery, string nameRub, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[5];
-                _args[0] = query;
-                _args[1] = data;
-                _args[2] = market;
-                _args[3] = countQuery;
-                _args[4] = nameRub;
+            public System.IAsyncResult BeginGetCurrUser(System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[0];
+                System.IAsyncResult _result = base.BeginInvoke("GetCurrUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public string EndGetCurrUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                string _result = ((string)(base.EndInvoke("GetCurrUser", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginAddCurrUser(MyPress.Client.ServiceMyPress.DataCr dataCr, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = dataCr;
+                System.IAsyncResult _result = base.BeginInvoke("AddCurrUser", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public void EndAddCurrUser(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                base.EndInvoke("AddCurrUser", _args, result);
+            }
+            
+            public System.IAsyncResult BeginQueryToBing(MyPress.Client.ServiceMyPress.Data data, MyPress.Client.ServiceMyPress.Rubriki rubriki, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = data;
+                _args[1] = rubriki;
                 System.IAsyncResult _result = base.BeginInvoke("QueryToBing", _args, callback, asyncState);
                 return _result;
             }

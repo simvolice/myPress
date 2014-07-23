@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -24,10 +25,12 @@ namespace MyPress.Client.ViewModel
         /// 
 
 
-       
+        Rubriki _rubriki = new Rubriki();
+
+        
 
 
-
+        private IDisposable disposableCheckLogin;
 
         /// <summary>
         /// The <see cref="NameRub" /> property's name.
@@ -35,6 +38,10 @@ namespace MyPress.Client.ViewModel
         public const string NameRubPropertyName = "NameRub";
 
         private string _nameRub = string.Empty;
+
+
+
+
 
         /// <summary>
         /// Sets and gets the NameRub property.
@@ -117,16 +124,41 @@ namespace MyPress.Client.ViewModel
         private void ExecuteCreateRubCommand()
         {
 
+            var func = Observable.FromEventPattern<GetCurrUserCompletedEventArgs>(myService, "GetCurrUserCompleted")
+                 .ObserveOnDispatcher();
+            myService.GetCurrUserAsync();
+            disposableCheckLogin = func.ObserveOnDispatcher().Select(x => x.EventArgs.Result).Subscribe(c => CheckEr(c));
 
 
-            //myData.Login = User;
-          
-            myService.QueryToBingAsync(Query, myData, "ru-RU", 2, NameRub);
+           
 
 
 
 
 
+        }
+
+        private void CheckEr(string c)
+        {
+
+            disposableCheckLogin.Dispose();
+
+
+
+
+            _rubriki.Name = NameRub;
+            _rubriki.DateCreate = DateTime.Now;
+            _rubriki.Query = Query;
+            _rubriki.CountCircle = 2;
+            _rubriki.Market = "ru-RU";
+           
+
+
+
+
+            myData.Login = c;
+
+            myService.QueryToBingAsync( myData, _rubriki);
 
 
         }
@@ -139,11 +171,6 @@ namespace MyPress.Client.ViewModel
 
         public CreateRubViewModel1(IDataService dataService)
         {
-
-
-
-          
-           
 
             _dataService = dataService;
             _dataService.GetData(

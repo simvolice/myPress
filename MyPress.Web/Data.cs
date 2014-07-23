@@ -7,9 +7,56 @@ namespace MyPress.Web
 {
 
 
+
+
+
+
+    [DataContract]
+    public class DataCr
+    {
+
+        [DataMember]
+        public string CurrentUser { get; set; }
+
+        public DataCr( DataCursor dataCursor)
+        {
+
+            this.CurrentUser = dataCursor.CurrentUser;
+
+
+        }
+
+
+
+        [OperationContract]
+        public DataCursor GetDataCursor()
+        {
+        DataCursor dataCursor = new DataCursor();
+
+
+            dataCursor.CurrentUser = CurrentUser;
+
+            return dataCursor;
+
+
+        }
+
+
+
+
+    }
+
+
+
     [DataContract]
     public class Data
     {
+
+
+
+
+
+
 
         [DataMember]
        public string Login { get; set; }
@@ -36,6 +83,8 @@ namespace MyPress.Web
         public Data(DataPersistance dataPersistance)
         {
 
+
+           
   
             this.Login = dataPersistance.Login;
             this.Pass = dataPersistance.Pass;

@@ -3,12 +3,30 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Microsoft.SqlServer.Server;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoRepository;
 
 
 namespace MyPress.Web
 {
-   
+
+
+
+    public class DataCursor : Entity
+
+    {
+
+
+        public string CurrentUser { get; set; }
+
+
+
+    }
+
+
+
+
+
     public class DataPersistance : Entity
     {
 
@@ -59,13 +77,29 @@ namespace MyPress.Web
         
         
         }
+
+
+
+       [DataMember]
+       public int CountCircle { get; set; }
+
         
         [DataMember]
+        public string Market { get; set; }
+
+        [BsonIgnore]
+        [DataMember]
+        public string Query { get; set; }
+
+        [DataMember]
         public string Name { get; set; }
+       
         [DataMember]
         public DateTime DateCreate { get; set; }
+
+        
         [DataMember]
-        public Int64 Coll { get; set; }
+        public Int64 CountRubr { get; set; }
 
         [DataMember]
         public List<Bing> Bing { get; set; }

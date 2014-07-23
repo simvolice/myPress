@@ -25,6 +25,7 @@ namespace MyPress.Client.ViewModel
         ServiceMyPress.MyPressServiceClient myService = new MyPressServiceClient();
         ServiceMyPress.Data myData = new Data();
 
+        ServiceMyPress.DataCr _dataCr = new DataCr();
 
         private RelayCommand enterCommand;
 
@@ -113,8 +114,12 @@ namespace MyPress.Client.ViewModel
               ValidateCustomError("Password",Resource1.FailedPassword);
             if (c.Equals(ErrorList.SuccesPassword))
             Messenger.Default.Send<Uri>(uri, "Navigate");
-          
-         
+
+            _dataCr.CurrentUser = User;
+
+            myService.AddCurrUserAsync(_dataCr);
+
+
 
 
 

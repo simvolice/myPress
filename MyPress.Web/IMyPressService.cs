@@ -11,8 +11,20 @@ namespace MyPress.Web
     [ServiceContract]
     public interface IMyPressService
     {
+
+
+
+
         [OperationContract]
-        void QueryToBing(string query, Data data, string market, int countQuery, string nameRub);
+        string GetCurrUser();
+
+
+        [OperationContract]
+        void AddCurrUser(DataCr dataCr);
+
+
+        [OperationContract]
+        void QueryToBing( Data data, Rubriki rubriki);
 
         [OperationContract]
         void AddUser(Data data);

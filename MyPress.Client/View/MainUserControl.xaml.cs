@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
+using MyPress.Client.ViewModel;
 
 namespace MyPress.Client.View
 {
@@ -15,6 +16,10 @@ namespace MyPress.Client.View
 
             Messenger.Default.Register<Uri>(this, "Navigate",
                 (uri) => ContentFrame.Navigate(uri));
+
+
+
+          
 
 
 

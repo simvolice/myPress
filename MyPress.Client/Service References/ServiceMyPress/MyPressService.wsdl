@@ -7,6 +7,18 @@
       <xsd:import schemaLocation="http://localhost:1311/MyPressService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MyPress.Web" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IMyPressService_GetCurrUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrUser" />
+  </wsdl:message>
+  <wsdl:message name="IMyPressService_GetCurrUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMyPressService_AddCurrUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCurrUser" />
+  </wsdl:message>
+  <wsdl:message name="IMyPressService_AddCurrUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCurrUserResponse" />
+  </wsdl:message>
   <wsdl:message name="IMyPressService_QueryToBing_InputMessage">
     <wsdl:part name="parameters" element="tns:QueryToBing" />
   </wsdl:message>
@@ -38,6 +50,14 @@
     <wsdl:part name="parameters" element="tns:CheckUserLoginResponse" />
   </wsdl:message>
   <wsdl:portType name="IMyPressService">
+    <wsdl:operation name="GetCurrUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyPressService/GetCurrUser" message="tns:IMyPressService_GetCurrUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyPressService/GetCurrUserResponse" message="tns:IMyPressService_GetCurrUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCurrUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMyPressService/AddCurrUser" message="tns:IMyPressService_AddCurrUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMyPressService/AddCurrUserResponse" message="tns:IMyPressService_AddCurrUser_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="QueryToBing">
       <wsdl:input wsaw:Action="http://tempuri.org/IMyPressService/QueryToBing" message="tns:IMyPressService_QueryToBing_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMyPressService/QueryToBingResponse" message="tns:IMyPressService_QueryToBing_OutputMessage" />
@@ -61,6 +81,24 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IMyPressService" type="tns:IMyPressService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCurrUser">
+      <soap:operation soapAction="http://tempuri.org/IMyPressService/GetCurrUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCurrUser">
+      <soap:operation soapAction="http://tempuri.org/IMyPressService/AddCurrUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="QueryToBing">
       <soap:operation soapAction="http://tempuri.org/IMyPressService/QueryToBing" style="document" />
       <wsdl:input>

@@ -18,38 +18,94 @@ namespace MyPress.Web
     public class MyPressService : IMyPressService
     {
 
-      
-        public void QueryToBing(string query, Data data, string market, int countQuery, string nameRub)
+
+
+        public string GetCurrUser()
         {
+
+            MongoRepository<DataCursor> dataCursors = new MongoRepository<DataCursor>();
+
+
+
+            var curUsr = dataCursors.FirstOrDefault();
+
+
+
+
+
+            return curUsr.CurrentUser;
+
+
+
+
+        }
+
+
+        public void AddCurrUser(DataCr dataCr)
+        {
+        
+
+
+         MongoRepository<DataCursor> dataCursors = new MongoRepository<DataCursor>();
+          
+
+
+            var curUsr = dataCursors.FirstOrDefault();
+
+
+            if (curUsr != null)
+            {
+
+                curUsr.CurrentUser = dataCr.CurrentUser;
+
+                dataCursors.Update(curUsr);
+
+
+
+            }
+
+            else
+            {
+
+
+
+                dataCursors.Add(dataCr.GetDataCursor());
+
+
+            }
+
+
+
+                
+
+            
+        }
+
+        public void QueryToBing( Data data, Rubriki  rubriki)
+        {
+
+            
 
 
             MongoRepository<DataPersistance> repository = new MongoRepository<DataPersistance>();
             ResultFromBing resultFromBing = new ResultFromBing();
-            List<Rubriki> list = new List<Rubriki>();
-         
-          
           
 
 
 
-            list.AddRange(new[]
-                    {
-                        new Rubriki() {Name = nameRub, Coll = resultFromBing.ResultFBing(query, market, countQuery).Count, DateCreate = DateTime.Now, Bing = resultFromBing.ResultFBing(query, market, countQuery)}
-                    
-
-                    });
-
-
-            data.Rubriki = list;
-
-       
+            var curUser = repository.Where(x => x.Login == data.Login).SingleOrDefault();
 
 
 
 
 
 
-            repository.Add(data.GetDataPersistance());
+            rubriki.Bing = resultFromBing.ResultFBing(rubriki.Query, rubriki.Market, rubriki.CountCircle);
+            rubriki.CountRubr = resultFromBing.ResultFBing(rubriki.Query, rubriki.Market, rubriki.CountCircle).Count;
+
+            curUser.Rubriki.Add(rubriki);
+
+            repository.Update(curUser);
 
 
 
