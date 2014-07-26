@@ -97,8 +97,8 @@
     <Grid x:Name="LayoutRoot" >
         <TextBox HorizontalAlignment="Left" Height="19" Margin="125,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"  FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontSize="8" />
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Название рубрики" VerticalAlignment="Top" Margin="10,29,0,0" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontWeight="Bold" FontSize="8" Foreground="#000000"/>
-            <TextBox HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Margin="125,58,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI"  Text="{Binding Query}"/>
-            <TextBox Text="{Binding  Path= NameRub}" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Margin="125,29,0,0" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontSize="8" />
+            <TextBox HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Margin="125,58,0,0" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI"  Text="{Binding Query, Mode=TwoWay}"/>
+            <TextBox Text="{Binding  Path= NameRub, Mode=TwoWay}" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Margin="125,29,0,0" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontSize="8" />
         <CheckBox Content="Пост" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="177,126,0,0"  Foreground="#000000" FontSize="8" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI"/>
         <CheckBox Content="Видео" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="293,105,0,0" Foreground="#000000" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontSize="8" />
         <CheckBox Content="Форум" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="222,105,0,0" Foreground="#000000" FontFamily="/MyPress2;component/Fonts/Fonts.zip#Segoe UI" FontSize="8" />

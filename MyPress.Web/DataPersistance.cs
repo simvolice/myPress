@@ -87,7 +87,7 @@ namespace MyPress.Web
         [DataMember]
         public string Market { get; set; }
 
-        [BsonIgnore]
+       
         [DataMember]
         public string Query { get; set; }
 

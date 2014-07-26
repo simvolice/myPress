@@ -17,36 +17,6 @@ namespace MyPress.Client.ServiceMyPress {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DataCr", Namespace="http://schemas.datacontract.org/2004/07/MyPress.Web")]
-    public partial class DataCr : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private string CurrentUserField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CurrentUser {
-            get {
-                return this.CurrentUserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CurrentUserField, value) != true)) {
-                    this.CurrentUserField = value;
-                    this.RaisePropertyChanged("CurrentUser");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Data", Namespace="http://schemas.datacontract.org/2004/07/MyPress.Web")]
     public partial class Data : object, System.ComponentModel.INotifyPropertyChanged {
         
@@ -330,6 +300,36 @@ namespace MyPress.Client.ServiceMyPress {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DataCr", Namespace="http://schemas.datacontract.org/2004/07/MyPress.Web")]
+    public partial class DataCr : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string CurrentUserField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CurrentUser {
+            get {
+                return this.CurrentUserField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrentUserField, value) != true)) {
+                    this.CurrentUserField = value;
+                    this.RaisePropertyChanged("CurrentUser");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ErrorList", Namespace="http://schemas.datacontract.org/2004/07/MyPress.Web")]
     public enum ErrorList : int {
@@ -356,6 +356,11 @@ namespace MyPress.Client.ServiceMyPress {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceMyPress.IMyPressService")]
     public interface IMyPressService {
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/GetRubriki", ReplyAction="http://tempuri.org/IMyPressService/GetRubrikiResponse")]
+        System.IAsyncResult BeginGetRubriki(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState);
+        
+        System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki> EndGetRubriki(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IMyPressService/GetCurrUser", ReplyAction="http://tempuri.org/IMyPressService/GetCurrUserResponse")]
         System.IAsyncResult BeginGetCurrUser(System.AsyncCallback callback, object asyncState);
@@ -395,6 +400,25 @@ namespace MyPress.Client.ServiceMyPress {
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IMyPressServiceChannel : MyPress.Client.ServiceMyPress.IMyPressService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetRubrikiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetRubrikiCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki> Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki>)(this.results[0]));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -476,6 +500,12 @@ namespace MyPress.Client.ServiceMyPress {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class MyPressServiceClient : System.ServiceModel.ClientBase<MyPress.Client.ServiceMyPress.IMyPressService>, MyPress.Client.ServiceMyPress.IMyPressService {
+        
+        private BeginOperationDelegate onBeginGetRubrikiDelegate;
+        
+        private EndOperationDelegate onEndGetRubrikiDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetRubrikiCompletedDelegate;
         
         private BeginOperationDelegate onBeginGetCurrUserDelegate;
         
@@ -572,6 +602,8 @@ namespace MyPress.Client.ServiceMyPress {
             }
         }
         
+        public event System.EventHandler<GetRubrikiCompletedEventArgs> GetRubrikiCompleted;
+        
         public event System.EventHandler<GetCurrUserCompletedEventArgs> GetCurrUserCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddCurrUserCompleted;
@@ -589,6 +621,52 @@ namespace MyPress.Client.ServiceMyPress {
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> CloseCompleted;
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginGetRubriki(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetRubriki(data, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki> MyPress.Client.ServiceMyPress.IMyPressService.EndGetRubriki(System.IAsyncResult result) {
+            return base.Channel.EndGetRubriki(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetRubriki(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            MyPress.Client.ServiceMyPress.Data data = ((MyPress.Client.ServiceMyPress.Data)(inValues[0]));
+            return ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).BeginGetRubriki(data, callback, asyncState);
+        }
+        
+        private object[] OnEndGetRubriki(System.IAsyncResult result) {
+            System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki> retVal = ((MyPress.Client.ServiceMyPress.IMyPressService)(this)).EndGetRubriki(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetRubrikiCompleted(object state) {
+            if ((this.GetRubrikiCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetRubrikiCompleted(this, new GetRubrikiCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetRubrikiAsync(MyPress.Client.ServiceMyPress.Data data) {
+            this.GetRubrikiAsync(data, null);
+        }
+        
+        public void GetRubrikiAsync(MyPress.Client.ServiceMyPress.Data data, object userState) {
+            if ((this.onBeginGetRubrikiDelegate == null)) {
+                this.onBeginGetRubrikiDelegate = new BeginOperationDelegate(this.OnBeginGetRubriki);
+            }
+            if ((this.onEndGetRubrikiDelegate == null)) {
+                this.onEndGetRubrikiDelegate = new EndOperationDelegate(this.OnEndGetRubriki);
+            }
+            if ((this.onGetRubrikiCompletedDelegate == null)) {
+                this.onGetRubrikiCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetRubrikiCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetRubrikiDelegate, new object[] {
+                        data}, this.onEndGetRubrikiDelegate, this.onGetRubrikiCompletedDelegate, userState);
+        }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult MyPress.Client.ServiceMyPress.IMyPressService.BeginGetCurrUser(System.AsyncCallback callback, object asyncState) {
@@ -983,6 +1061,19 @@ namespace MyPress.Client.ServiceMyPress {
             
             public MyPressServiceClientChannel(System.ServiceModel.ClientBase<MyPress.Client.ServiceMyPress.IMyPressService> client) : 
                     base(client) {
+            }
+            
+            public System.IAsyncResult BeginGetRubriki(MyPress.Client.ServiceMyPress.Data data, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = data;
+                System.IAsyncResult _result = base.BeginInvoke("GetRubriki", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki> EndGetRubriki(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki> _result = ((System.Collections.ObjectModel.ObservableCollection<MyPress.Client.ServiceMyPress.Rubriki>)(base.EndInvoke("GetRubriki", _args, result)));
+                return _result;
             }
             
             public System.IAsyncResult BeginGetCurrUser(System.AsyncCallback callback, object asyncState) {

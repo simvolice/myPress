@@ -20,6 +20,35 @@ namespace MyPress.Web
 
 
 
+
+
+        public List<Rubriki> GetRubriki(Data data)
+        {
+
+            MongoRepository<DataPersistance> repository = new MongoRepository<DataPersistance>();
+           
+
+
+
+
+            var curUser = repository.Where(x => x.Login == data.Login).SingleOrDefault();
+
+
+
+
+
+
+
+
+            return curUser.Rubriki;
+
+
+
+        }
+
+
+
+
         public string GetCurrUser()
         {
 

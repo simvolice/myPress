@@ -14,12 +14,93 @@
         <sdk:TabControl Margin="10,51,10,10">
             <sdk:TabItem Header="Рубрики">
                 <Grid>
-                    <sdk:DataGrid AutoGenerateColumns="False">
-                        <sdk:DataGrid.Columns>
-                            <sdk:DataGridTextColumn Binding="{x:Null}" CanUserSort="True" CanUserReorder="True" CellStyle="{x:Null}" CanUserResize="True" ClipboardContentBinding="{x:Null}" DisplayIndex="-1" DragIndicatorStyle="{x:Null}" EditingElementStyle="{x:Null}" ElementStyle="{x:Null}" Foreground="{x:Null}" FontWeight="Normal" FontStyle="Normal" HeaderStyle="{x:Null}" Header="Название" IsReadOnly="False" MaxWidth="Infinity" MinWidth="0" SortMemberPath="{x:Null}" Visibility="Visible" Width="Auto"/>
-                            <sdk:DataGridTextColumn Binding="{x:Null}" CanUserSort="True" CanUserReorder="True" CellStyle="{x:Null}" CanUserResize="True" ClipboardContentBinding="{x:Null}" DisplayIndex="-1" DragIndicatorStyle="{x:Null}" EditingElementStyle="{x:Null}" ElementStyle="{x:Null}" Foreground="{x:Null}" FontWeight="Normal" FontStyle="Normal" HeaderStyle="{x:Null}" Header="Дата создания" IsReadOnly="False" MaxWidth="Infinity" MinWidth="0" SortMemberPath="{x:Null}" Visibility="Visible" Width="Auto"/>
-                            <sdk:DataGridTextColumn Binding="{x:Null}" CanUserSort="True" CanUserReorder="True" CellStyle="{x:Null}" CanUserResize="True" ClipboardContentBinding="{x:Null}" DisplayIndex="-1" DragIndicatorStyle="{x:Null}" EditingElementStyle="{x:Null}" ElementStyle="{x:Null}" Foreground="{x:Null}" FontWeight="Normal" FontStyle="Normal" HeaderStyle="{x:Null}" Header="Кол. документов" IsReadOnly="False" MaxWidth="Infinity" MinWidth="0" SortMemberPath="{x:Null}" Visibility="Visible" Width="Auto"/>
-                        </sdk:DataGrid.Columns>
+                    <sdk:DataGrid AutoGenerateColumns="True" IsReadOnly="True" ItemsSource="{Binding ListRubrici}">
+                        <sdk:DataGrid.Resources>
+                            <Style x:Key="EditHeaderStyle" TargetType="sdk:DataGridColumnHeader">
+                                <Setter Property="Foreground" Value="#FF000000"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="IsTabStop" Value="False"/>
+                                <Setter Property="SeparatorBrush" Value="#FFC9CACA"/>
+                                <Setter Property="Padding" Value="4"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="sdk:DataGridColumnHeader">
+                                            <Grid x:Name="Root">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal"/>
+                                                        <VisualState x:Name="MouseOver">
+                                                            <Storyboard>
+                                                                <ColorAnimation Duration="0" To="#FF448DCA" Storyboard.TargetProperty="(Fill).Color" Storyboard.TargetName="BackgroundRectangle"/>
+                                                                <ColorAnimation Duration="0" To="#7FFFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[3].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                                                <ColorAnimation Duration="0" To="#CCFFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[2].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                                                <ColorAnimation Duration="0" To="#F2FFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[1].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Pressed">
+                                                            <Storyboard>
+                                                                <ColorAnimation Duration="0" To="#FF448DCA" Storyboard.TargetProperty="(Fill).Color" Storyboard.TargetName="BackgroundRectangle"/>
+                                                                <ColorAnimation Duration="0" To="#D8FFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[0].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                                                <ColorAnimation Duration="0" To="#C6FFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[1].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                                                <ColorAnimation Duration="0" To="#8CFFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[2].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                                                <ColorAnimation Duration="0" To="#3FFFFFFF" Storyboard.TargetProperty="(Fill).(GradientStops)[3].Color" Storyboard.TargetName="BackgroundGradient"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="SortStates">
+                                                        <VisualState x:Name="Unsorted"/>
+                                                        <VisualState x:Name="SortAscending">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Duration="0" To="1.0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SortIcon"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="SortDescending">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Duration="0" To="1.0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SortIcon"/>
+                                                                <DoubleAnimation Duration="0" To="-.9" Storyboard.TargetProperty="(RenderTransform).ScaleY" Storyboard.TargetName="SortIcon"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Rectangle x:Name="BackgroundRectangle" Grid.ColumnSpan="2" Fill="#FF1F3B53" Stretch="Fill"/>
+                                                <Rectangle x:Name="BackgroundGradient" Grid.ColumnSpan="2" Stretch="Fill">
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush EndPoint=".7,1" StartPoint=".7,0">
+                                                            <GradientStop Color="#FCFFFFFF" Offset="0.015"/>
+                                                            <GradientStop Color="#F7FFFFFF" Offset="0.375"/>
+                                                            <GradientStop Color="#E5FFFFFF" Offset="0.6"/>
+                                                            <GradientStop Color="#D1FFFFFF" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <ContentPresenter Content="{TemplateBinding Content}"/>
+                                                    <Path x:Name="SortIcon" Grid.Column="1" Data="F1 M -5.215,6.099L 5.215,6.099L 0,0L -5.215,6.099 Z " Fill="#FF444444" HorizontalAlignment="Left" Margin="4,0,0,0" Opacity="0" RenderTransformOrigin=".5,.5" Stretch="Uniform" VerticalAlignment="Center" Width="8">
+                                                        <Path.RenderTransform>
+                                                            <ScaleTransform ScaleY=".9" ScaleX=".9"/>
+                                                        </Path.RenderTransform>
+                                                    </Path>
+                                                </Grid>
+                                                <Rectangle x:Name="VerticalSeparator" Grid.Column="1" Fill="{TemplateBinding SeparatorBrush}" Visibility="{TemplateBinding SeparatorVisibility}" VerticalAlignment="Stretch" Width="1"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </sdk:DataGrid.Resources>
+                        <sdk:DataGrid.ColumnHeaderStyle>
+                            <StaticResource ResourceKey="EditHeaderStyle"/>
+                        </sdk:DataGrid.ColumnHeaderStyle>
+
                     </sdk:DataGrid>
 
 

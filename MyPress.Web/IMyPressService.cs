@@ -13,7 +13,8 @@ namespace MyPress.Web
     {
 
 
-
+        [OperationContract]
+       List<Rubriki> GetRubriki(Data data);
 
         [OperationContract]
         string GetCurrUser();

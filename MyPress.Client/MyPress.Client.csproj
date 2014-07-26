@@ -219,6 +219,9 @@
     <None Include="Service References\ServiceMyPress\MyPress.Client.ServiceMyPress.ErrorList.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceMyPress\MyPress.Client.ServiceMyPress.Rubriki.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceMyPress\MyPressService.wsdl" />
     <None Include="Service References\ServiceMyPress\MyPressService.xsd">
       <SubType>Designer</SubType>
